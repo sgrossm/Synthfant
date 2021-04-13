@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<JUCERPROJECT id="mpP1r6" name="PuzzleMirrorSynth" projectType="audioplug"
+              useAppConfig="0" addUsingNamespaceToJuceHeader="0" displaySplashScreen="1"
+              jucerFormatVersion="1" pluginCharacteristicsValue="pluginIsSynth,pluginWantsMidiIn">
+  <MAINGROUP id="roJTac" name="PuzzleMirrorSynth">
+    <GROUP id="{E36BD4BA-B4BC-37F5-EB01-52F8DDA18294}" name="Source">
+      <GROUP id="{57F828D7-F793-2F47-6A87-3D14FE1ED2F1}" name="Data">
+        <FILE id="ZIFAFH" name="ADSRData.cpp" compile="1" resource="0" file="Source/Data/ADSRData.cpp"/>
+        <FILE id="kRkFjf" name="ADSRData.h" compile="0" resource="0" file="Source/Data/ADSRData.h"/>
+        <FILE id="UQ8odR" name="OscData.cpp" compile="1" resource="0" file="Source/Data/OscData.cpp"/>
+        <FILE id="zVe62o" name="OscData.h" compile="0" resource="0" file="Source/Data/OscData.h"/>
+      </GROUP>
+      <GROUP id="{709A5827-001C-99FE-3BE4-184F5EB72C9E}" name="UI">
+        <FILE id="ujY80q" name="ADSRComponent.cpp" compile="1" resource="0"
+              file="Source/UI/ADSRComponent.cpp"/>
+        <FILE id="x2Uc6b" name="ADSRComponent.h" compile="0" resource="0" file="Source/UI/ADSRComponent.h"/>
+        <FILE id="iEsp6H" name="OscComponent.cpp" compile="1" resource="0"
+              file="Source/UI/OscComponent.cpp"/>
+        <FILE id="R33XHj" name="OscComponent.h" compile="0" resource="0" file="Source/UI/OscComponent.h"/>
+      </GROUP>
+      <FILE id="TvWDPX" name="PluginProcessor.cpp" compile="1" resource="0"
+            file="Source/PluginProcessor.cpp"/>
+      <FILE id="O8QZHS" name="PluginProcessor.h" compile="0" resource="0"
+            file="Source/PluginProcessor.h"/>
+      <FILE id="zS8bOz" name="PluginEditor.cpp" compile="1" resource="0"
+            file="Source/PluginEditor.cpp"/>
+      <FILE id="AzEI72" name="PluginEditor.h" compile="0" resource="0" file="Source/PluginEditor.h"/>
+      <FILE id="yNIoHn" name="SynthVoice.cpp" compile="1" resource="0" file="Source/SynthVoice.cpp"/>
+      <FILE id="G9ZlPw" name="SynthVoice.h" compile="0" resource="0" file="Source/SynthVoice.h"/>
+      <FILE id="TlCyrJ" name="SynthSound.h" compile="0" resource="0" file="Source/SynthSound.h"/>
+    </GROUP>
+  </MAINGROUP>
+  <JUCEOPTIONS JUCE_STRICT_REFCOUNTEDPOINTER="1" JUCE_VST3_CAN_REPLACE_VST2="0"/>
+  <EXPORTFORMATS>
+    <VS2019 targetFolder="Builds/VisualStudio2019">
+      <CONFIGURATIONS>
+        <CONFIGURATION isDebug="1" name="Debug" targetName="PuzzleMirrorSynth"/>
+        <CONFIGURATION isDebug="0" name="Release" targetName="PuzzleMirrorSynth"/>
+      </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="juce_audio_basics" path="../../../juce-6.0.8-windows/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_devices" path="../../../juce-6.0.8-windows/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_formats" path="../../../juce-6.0.8-windows/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_plugin_client" path="../../../juce-6.0.8-windows/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_processors" path="../../../juce-6.0.8-windows/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_utils" path="../../../juce-6.0.8-windows/JUCE/modules"/>
+        <MODULEPATH id="juce_core" path="../../../juce-6.0.8-windows/JUCE/modules"/>
+        <MODULEPATH id="juce_data_structures" path="../../../juce-6.0.8-windows/JUCE/modules"/>
+        <MODULEPATH id="juce_events" path="../../../juce-6.0.8-windows/JUCE/modules"/>
+        <MODULEPATH id="juce_graphics" path="../../../juce-6.0.8-windows/JUCE/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="../../../juce-6.0.8-windows/JUCE/modules"/>
+        <MODULEPATH id="juce_gui_extra" path="../../../juce-6.0.8-windows/JUCE/modules"/>
+        <MODULEPATH id="juce_dsp" path="../../../juce-6.0.8-windows/JUCE/modules"/>
+      </MODULEPATHS>
+    </VS2019>
+  </EXPORTFORMATS>
+  <MODULES>
+    <MODULE id="juce_audio_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_devices" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_formats" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_plugin_client" showAllCode="1" useLocalCopy="0"
+            useGlobalPath="1"/>
+    <MODULE id="juce_audio_processors" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_utils" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_core" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_data_structures" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_dsp" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_events" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_graphics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_gui_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_gui_extra" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+  </MODULES>
+  <LIVE_SETTINGS>
+    <WINDOWS/>
+  </LIVE_SETTINGS>
+</JUCERPROJECT>
