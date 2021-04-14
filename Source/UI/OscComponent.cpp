@@ -38,6 +38,7 @@ void OscComponent::paint (juce::Graphics& g)
     g.fillAll(juce::Colours::black);
     g.setColour(juce::Colours::white);
     g.setFont(20.0f);
+    g.drawText("Waveform", labelSpace.withX(5), juce::Justification::left);
     g.drawRoundedRectangle(bounds.toFloat(), 5.0f, 2.0f);
 }
 
@@ -49,6 +50,6 @@ void OscComponent::resized()
     const auto labelYOffset = 20;
     const auto labelHeight = 20;
 
-    waveformSelector.setBounds(10, startY + 5, 90, 30);
+    waveformSelector.setBounds(10, startY - 15, 90, 30);
     waveformLabel.setBounds(10, startY - labelYOffset, 90, labelHeight);
 }

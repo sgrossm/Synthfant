@@ -24,7 +24,7 @@ void SynthVoice::startNote(int midiNoteNumber, float velocity, juce::Synthesiser
 void SynthVoice::stopNote(float velocity, bool allowTailOff) 
 {
     adsr.noteOff();
-
+ 
     if (!allowTailOff || !adsr.isActive())
         clearCurrentNote();
     
@@ -52,7 +52,7 @@ void SynthVoice::prepareToPlay(double sampleRate, int samplesPerBlock, int outpu
     osc.prepareToPlay(spec);
     gain.prepare(spec);
 
-    gain.setGainLinear(0.15f);
+    gain.setGainLinear(0.10f);
 
     isPrepared = true;
 }

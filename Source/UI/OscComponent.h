@@ -27,7 +27,7 @@ public:
 private:
     juce::ComboBox waveformSelector;
     std::unique_ptr<juce::AudioProcessorValueTreeState::ComboBoxAttachment> oscWaveSelectorAttachment;
-    juce::Label waveformLabel {"Waveform", "Waveform"};
+    juce::Label waveformLabel {"Waveform"};
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (OscComponent)
 };

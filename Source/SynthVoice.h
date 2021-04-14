@@ -33,7 +33,6 @@ private:
     juce::AudioBuffer<float> synthBuffer;
 
     OscData osc;
-    //juce::dsp::Oscillator<float> osc{ [](float x) { return x / juce::MathConstants<float>::pi; } };
     juce::dsp::Gain<float> gain;
     bool isPrepared{ false };
 };

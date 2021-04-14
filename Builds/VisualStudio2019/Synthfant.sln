@@ -1,17 +1,17 @@
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2019
 
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PuzzleMirrorSynth - Standalone Plugin", "PuzzleMirrorSynth_StandalonePlugin.vcxproj", "{53EA68FE-74F5-EED4-8FC4-AC4FCC0574A7}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Synthfant - Standalone Plugin", "Synthfant_StandalonePlugin.vcxproj", "{53EA68FE-74F5-EED4-8FC4-AC4FCC0574A7}"
 	ProjectSection(ProjectDependencies) = postProject
 		{E5D92BAD-6193-6FA8-2289-F9D03C4F7C1B} = {E5D92BAD-6193-6FA8-2289-F9D03C4F7C1B}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PuzzleMirrorSynth - VST3", "PuzzleMirrorSynth_VST3.vcxproj", "{6DF5BFF8-E1D9-8F26-7360-91621FB2B076}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Synthfant - VST3", "Synthfant_VST3.vcxproj", "{6DF5BFF8-E1D9-8F26-7360-91621FB2B076}"
 	ProjectSection(ProjectDependencies) = postProject
 		{E5D92BAD-6193-6FA8-2289-F9D03C4F7C1B} = {E5D92BAD-6193-6FA8-2289-F9D03C4F7C1B}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PuzzleMirrorSynth - Shared Code", "PuzzleMirrorSynth_SharedCode.vcxproj", "{E5D92BAD-6193-6FA8-2289-F9D03C4F7C1B}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Synthfant - Shared Code", "Synthfant_SharedCode.vcxproj", "{E5D92BAD-6193-6FA8-2289-F9D03C4F7C1B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

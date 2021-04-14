@@ -25,7 +25,7 @@ PuzzleMirrorSynthAudioProcessorEditor::~PuzzleMirrorSynthAudioProcessorEditor()
 //==============================================================================
 void PuzzleMirrorSynthAudioProcessorEditor::paint (juce::Graphics& g)
 {
-    g.fillAll(juce::Colours::black);;
+    g.fillAll(juce::Colours::black);
 }
 
 void PuzzleMirrorSynthAudioProcessorEditor::resized()

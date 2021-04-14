@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="PuzzleMirrorSynth\Source\Data">
-      <UniqueIdentifier>{E1F9B922-A8E7-7CDA-08CA-C9CCF6097AAC}</UniqueIdentifier>
+    <Filter Include="Synthfant\Source\Data">
+      <UniqueIdentifier>{126F49D6-FF92-C81D-50A9-65FDA18C0177}</UniqueIdentifier>
     </Filter>
-    <Filter Include="PuzzleMirrorSynth\Source\UI">
-      <UniqueIdentifier>{819A1B89-4357-DE5F-2B48-4BEC516142CD}</UniqueIdentifier>
+    <Filter Include="Synthfant\Source\UI">
+      <UniqueIdentifier>{3458FFC2-A9D7-56C5-33FF-ABA2E5317345}</UniqueIdentifier>
     </Filter>
-    <Filter Include="PuzzleMirrorSynth\Source">
-      <UniqueIdentifier>{27A591E5-0E97-54A5-A083-20C61584361C}</UniqueIdentifier>
+    <Filter Include="Synthfant\Source">
+      <UniqueIdentifier>{6685C6DE-9FDC-E592-2E67-D0596177EE82}</UniqueIdentifier>
     </Filter>
-    <Filter Include="PuzzleMirrorSynth">
-      <UniqueIdentifier>{F25B19E5-8D4B-27F5-005A-E8EEF48B0F3D}</UniqueIdentifier>
+    <Filter Include="Synthfant">
+      <UniqueIdentifier>{3AE24C32-7D7F-6D16-2EFD-2900CF830AC8}</UniqueIdentifier>
     </Filter>
     <Filter Include="JUCE Modules\juce_audio_basics\audio_play_head">
       <UniqueIdentifier>{EB58F05A-A968-CEBE-40C4-107CDD8F240F}</UniqueIdentifier>
@@ -460,25 +460,25 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Source\Data\ADSRData.cpp">
-      <Filter>PuzzleMirrorSynth\Source\Data</Filter>
+      <Filter>Synthfant\Source\Data</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Data\OscData.cpp">
-      <Filter>PuzzleMirrorSynth\Source\Data</Filter>
+      <Filter>Synthfant\Source\Data</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\UI\ADSRComponent.cpp">
-      <Filter>PuzzleMirrorSynth\Source\UI</Filter>
+      <Filter>Synthfant\Source\UI</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\UI\OscComponent.cpp">
-      <Filter>PuzzleMirrorSynth\Source\UI</Filter>
+      <Filter>Synthfant\Source\UI</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\PluginProcessor.cpp">
-      <Filter>PuzzleMirrorSynth\Source</Filter>
+      <Filter>Synthfant\Source</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\PluginEditor.cpp">
-      <Filter>PuzzleMirrorSynth\Source</Filter>
+      <Filter>Synthfant\Source</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\SynthVoice.cpp">
-      <Filter>PuzzleMirrorSynth\Source</Filter>
+      <Filter>Synthfant\Source</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\..\juce-6.0.8-windows\JUCE\modules\juce_audio_basics\buffers\juce_AudioChannelSet.cpp">
       <Filter>JUCE Modules\juce_audio_basics\buffers</Filter>
@@ -2529,28 +2529,28 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Source\Data\ADSRData.h">
-      <Filter>PuzzleMirrorSynth\Source\Data</Filter>
+      <Filter>Synthfant\Source\Data</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Data\OscData.h">
-      <Filter>PuzzleMirrorSynth\Source\Data</Filter>
+      <Filter>Synthfant\Source\Data</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\UI\ADSRComponent.h">
-      <Filter>PuzzleMirrorSynth\Source\UI</Filter>
+      <Filter>Synthfant\Source\UI</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\UI\OscComponent.h">
-      <Filter>PuzzleMirrorSynth\Source\UI</Filter>
+      <Filter>Synthfant\Source\UI</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\PluginProcessor.h">
-      <Filter>PuzzleMirrorSynth\Source</Filter>
+      <Filter>Synthfant\Source</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\PluginEditor.h">
-      <Filter>PuzzleMirrorSynth\Source</Filter>
+      <Filter>Synthfant\Source</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\SynthVoice.h">
-      <Filter>PuzzleMirrorSynth\Source</Filter>
+      <Filter>Synthfant\Source</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\SynthSound.h">
-      <Filter>PuzzleMirrorSynth\Source</Filter>
+      <Filter>Synthfant\Source</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\..\juce-6.0.8-windows\JUCE\modules\juce_audio_basics\audio_play_head\juce_AudioPlayHead.h">
       <Filter>JUCE Modules\juce_audio_basics\audio_play_head</Filter>
