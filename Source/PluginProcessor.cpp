@@ -214,16 +214,16 @@ juce::AudioProcessorValueTreeState::ParameterLayout PuzzleMirrorSynthAudioProces
 
     // ADSR
     params.push_back(std::make_unique<juce::AudioParameterFloat>("ATTACK", "Attack",
-        juce::NormalisableRange<float>{0.01f, 1.0f }, 0.01f));
+        juce::NormalisableRange<float>{0.01f, 1.0f, 0.01f }, 0.01f));
 
     params.push_back(std::make_unique<juce::AudioParameterFloat>("DECAY", "Decay",
-        juce::NormalisableRange<float>{0.01f, 1.0f }, 0.1f));
+        juce::NormalisableRange<float>{0.01f, 1.0f, 0.01f }, 0.1f));
 
     params.push_back(std::make_unique<juce::AudioParameterFloat>("SUSTAIN", "Sustain",
-        juce::NormalisableRange<float>{0.00f, 1.0f }, 1.0f));
+        juce::NormalisableRange<float>{0.00f, 1.0f, 0.01f }, 1.0f));
 
     params.push_back(std::make_unique<juce::AudioParameterFloat>("RELEASE", "Release",
-        juce::NormalisableRange<float>{0.01f, 5.0f }, 0.25f));
+        juce::NormalisableRange<float>{0.01f, 5.0f, 0.01f }, 0.25f));
 
 
 

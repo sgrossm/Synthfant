@@ -19,6 +19,11 @@ OscComponent::OscComponent(juce::AudioProcessorValueTreeState& apvts, juce::Stri
     addAndMakeVisible(waveformSelector);
 
     oscWaveSelectorAttachment = std::make_unique<juce::AudioProcessorValueTreeState::ComboBoxAttachment>(apvts, waveID, waveformSelector);
+
+    waveformLabel.setColour(juce::Label::ColourIds::textColourId, juce::Colours::white);
+    waveformLabel.setFont(15.0f);
+    waveformLabel.setJustificationType(juce::Justification::left);
+    addAndMakeVisible(waveformLabel);
 }
 
 OscComponent::~OscComponent()
@@ -27,11 +32,23 @@ OscComponent::~OscComponent()
 
 void OscComponent::paint (juce::Graphics& g)
 {
-    g.fillAll(juce::Colours::black);
+    auto bounds = getLocalBounds().reduced(5);
+    auto labelSpace = bounds.removeFromTop(25.0f);
 
+    g.fillAll(juce::Colours::black);
+    g.setColour(juce::Colours::white);
+    g.setFont(20.0f);
+    g.drawRoundedRectangle(bounds.toFloat(), 5.0f, 2.0f);
 }
 
 void OscComponent::resized()
 {
-    waveformSelector.setBounds(0, 0, 90, 20);
+    const auto startY = 55;
+    const auto sliderWidth = 100;
+    const auto sliderHeight = 90;
+    const auto labelYOffset = 20;
+    const auto labelHeight = 20;
+
+    waveformSelector.setBounds(10, startY + 5, 90, 30);
+    waveformLabel.setBounds(10, startY - labelYOffset, 90, labelHeight);
 }

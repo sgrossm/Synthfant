@@ -13,7 +13,7 @@
 PuzzleMirrorSynthAudioProcessorEditor::PuzzleMirrorSynthAudioProcessorEditor (PuzzleMirrorSynthAudioProcessor& p)
     : AudioProcessorEditor (&p), audioProcessor (p), osc(audioProcessor.apvts, "OSC"), adsrComponent(audioProcessor.apvts)
 {
-    setSize (400, 300);
+    setSize (600, 500);
     addAndMakeVisible(osc);
     addAndMakeVisible(adsrComponent);
 }
@@ -30,7 +30,9 @@ void PuzzleMirrorSynthAudioProcessorEditor::paint (juce::Graphics& g)
 
 void PuzzleMirrorSynthAudioProcessorEditor::resized()
 {
-    osc.setBounds(10, 10, 100, 30);
-    adsrComponent.setBounds(getWidth() / 2, 0, getWidth() / 2, getHeight());
+    const auto x = 5;
+    const auto y = 25;
+    osc.setBounds(x, y, 300, 200);
+    adsrComponent.setBounds(osc.getRight(), y, 280, 200);
 }
 

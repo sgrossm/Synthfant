@@ -24,12 +24,19 @@ public:
     void resized() override;
 
 private:
-    void setSliderParams(juce::Slider& slider);
+    using Attachment = juce::AudioProcessorValueTreeState::SliderAttachment;
+    void setSliderWithLabel(juce::Slider& slider, juce::Label& label, juce::AudioProcessorValueTreeState& apvts,
+                            juce::String parameterID, std::unique_ptr<Attachment>& sliderAttachment);
 
     juce::Slider attackSlider;
     juce::Slider decaySlider;
     juce::Slider sustainSlider;
     juce::Slider releaseSlider;
+
+    juce::Label attackLabel { "Attack", "A" };
+    juce::Label decayLabel { "Decay", "D" };
+    juce::Label sustainLabel {"Sustain", "S"};
+    juce::Label releaseLabel {"Release", "R"};
 
     using SliderAttachment = juce::AudioProcessorValueTreeState::SliderAttachment;
     // when exit UI, unique_ptr marks memory as free to use
