@@ -22,7 +22,7 @@ PuzzleMirrorSynthAudioProcessor::PuzzleMirrorSynthAudioProcessor()
                        ), apvts(*this, nullptr, "Parameters", createParams())
 #endif
 {
-    for (int i = 0; i < 4; ++i)
+    for (int i = 0; i < 5; ++i)
         synth.addVoice(new SynthVoice());
 
     synth.addSound(new SynthSound());
