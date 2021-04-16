@@ -154,7 +154,11 @@ void PuzzleMirrorSynthAudioProcessor::processBlock (juce::AudioBuffer<float>& bu
         if (auto voice = dynamic_cast<SynthVoice*>(synth.getVoice(i)))
         {
             // Osc select
-            auto& waveformChoice = *apvts.getRawParameterValue("OSC");
+            auto& waveformChoice = *apvts.getRawParameterValue("OSC1");
+
+            // FM processing
+            auto& fmFrequency = *apvts.getRawParameterValue("OSC1FMFREQUENCY");
+            auto& fmDepth = *apvts.getRawParameterValue("OSC1FMDEPTH");
 
             // ADSR
             auto& attack = *apvts.getRawParameterValue("ATTACK");
@@ -163,7 +167,8 @@ void PuzzleMirrorSynthAudioProcessor::processBlock (juce::AudioBuffer<float>& bu
             auto& release = *apvts.getRawParameterValue("RELEASE");
 
             voice->update(attack.load(), decay.load(), sustain.load(), release.load());
-            voice->getOscillator().setOscillatorWaveform(waveformChoice);
+            voice->getOscillator().setFMParameters(fmFrequency, fmDepth);
+            voice->getOscillator().setOscillatorWaveform(waveformChoice);            
         }
     }
 
@@ -209,18 +214,25 @@ juce::AudioProcessorValueTreeState::ParameterLayout PuzzleMirrorSynthAudioProces
     std::vector<std::unique_ptr<juce::RangedAudioParameter>> params;
 
     // Osc waveform selection
-    params.push_back(std::make_unique<juce::AudioParameterChoice>("OSC", "Oscillator",
+    params.push_back(std::make_unique<juce::AudioParameterChoice>("OSC1", "Oscillator 1",
         juce::StringArray{ "Sine", "Saw", "Square" }, 0));
+
+    // FM 
+    params.push_back(std::make_unique<juce::AudioParameterFloat>("OSC1FMFREQUENCY", "Osc 1 FM Frequency",
+        juce::NormalisableRange<float>{0.0f, 1000.0f, 0.01f}, 5.0f));
+
+    params.push_back(std::make_unique<juce::AudioParameterFloat>("OSC1FMDEPTH", "Osc 1 FM Depth",
+        juce::NormalisableRange<float>{0.0f, 1000.0f, 0.01f}, 0.0f));
 
     // ADSR
     params.push_back(std::make_unique<juce::AudioParameterFloat>("ATTACK", "Attack",
-        juce::NormalisableRange<float>{0.01f, 1.0f, 0.01f }, 0.01f));
+        juce::NormalisableRange<float>{0.0f, 1.0f, 0.01f }, 0.01f));
 
     params.push_back(std::make_unique<juce::AudioParameterFloat>("DECAY", "Decay",
         juce::NormalisableRange<float>{0.01f, 1.0f, 0.01f }, 0.1f));
 
     params.push_back(std::make_unique<juce::AudioParameterFloat>("SUSTAIN", "Sustain",
-        juce::NormalisableRange<float>{0.00f, 1.0f, 0.01f }, 1.0f));
+        juce::NormalisableRange<float>{0.0f, 1.0f, 0.01f }, 1.0f));
 
     params.push_back(std::make_unique<juce::AudioParameterFloat>("RELEASE", "Release",
         juce::NormalisableRange<float>{0.01f, 5.0f, 0.01f }, 0.25f));

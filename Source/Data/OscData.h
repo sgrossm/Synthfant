@@ -17,8 +17,13 @@ public:
     void prepareToPlay(juce::dsp::ProcessSpec& proc);
     void setOscillatorWaveform(const int waveformChoice);
     void setOscillatorFrequency(const int midiNoteNumber);
-    void processNextAudioBlock(juce::dsp::AudioBlock<float>& block);
+    void getNextAudioBlock(juce::dsp::AudioBlock<float>& block);
+    void processFMOsc(juce::dsp::AudioBlock<float>& block);
+    void setFMParameters(const float frequency, const float depth);
 
 private:
-
+    juce::dsp::Oscillator<float> fmOscillator{ [](float x) { return std::sin(x); } };
+    int lastMidiNotePressed { 0 };
+    float fmModulator { 0.0f };
+    float fmDepth { 0.0f };
 };

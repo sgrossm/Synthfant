@@ -73,7 +73,7 @@ void SynthVoice::renderNextBlock(juce::AudioBuffer<float>& outputBuffer, int sta
     synthBuffer.clear();
 
     juce::dsp::AudioBlock<float> audioBlock{ synthBuffer };    // audio block is an alias for outputBuffer
-    osc.processNextAudioBlock(audioBlock);
+    osc.getNextAudioBlock(audioBlock);
     gain.process(juce::dsp::ProcessContextReplacing<float>(audioBlock));
 
     adsr.applyEnvelopeToBuffer(synthBuffer, 0, synthBuffer.getNumSamples());

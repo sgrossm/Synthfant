@@ -11,7 +11,8 @@
 
 //==============================================================================
 PuzzleMirrorSynthAudioProcessorEditor::PuzzleMirrorSynthAudioProcessorEditor (PuzzleMirrorSynthAudioProcessor& p)
-    : AudioProcessorEditor (&p), audioProcessor (p), osc(audioProcessor.apvts, "OSC"), adsrComponent(audioProcessor.apvts)
+    : AudioProcessorEditor (&p), audioProcessor (p), osc(audioProcessor.apvts, "OSC1", "OSC1FMFREQUENCY", "OSC1FMDEPTH"), 
+    adsrComponent(audioProcessor.apvts)
 {
     setSize (600, 500);
     addAndMakeVisible(osc);
