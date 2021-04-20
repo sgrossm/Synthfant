@@ -177,11 +177,14 @@ void PuzzleMirrorSynthAudioProcessor::processBlock (juce::AudioBuffer<float>& bu
             auto& filterSustain = *apvts.getRawParameterValue("FILTERSUSTAIN");
             auto& filterRelease = *apvts.getRawParameterValue("FILTERRELEASE");
 
+            auto& distortionType = *apvts.getRawParameterValue("DISTORTIONTYPE");
+
             voice->getOscillator().setFMParameters(fmFrequency, fmDepth);
             voice->getOscillator().setOscillatorWaveform(waveformChoice);            
             voice->getADSR().updateADSR(attack.load(), decay.load(), sustain.load(), release.load());
             voice->getFilterADSR().updateADSR(filterAttack.load(), filterDecay.load(), filterSustain.load(), filterRelease.load());
             voice->updateFilter(filterType, filterCutoff, filterResonance);
+            voice->updateDistortion(distortionType);
         }
     }
 
@@ -273,6 +276,10 @@ juce::AudioProcessorValueTreeState::ParameterLayout PuzzleMirrorSynthAudioProces
 
     params.push_back(std::make_unique<juce::AudioParameterFloat>("FILTERRELEASE", "Filter Release",
         juce::NormalisableRange<float>{0.01f, 5.0f, 0.01f }, 0.25f));
+
+    // Waveshaper
+    params.push_back(std::make_unique<juce::AudioParameterChoice>("DISTORTIONTYPE", "Distortion Type",
+        juce::StringArray{ "None", "Type 1", "Type 2", "Type 3" }, 1));
 
     return { params.begin(), params.end() };
 }

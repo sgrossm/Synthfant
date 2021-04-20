@@ -16,13 +16,15 @@ PuzzleMirrorSynthAudioProcessorEditor::PuzzleMirrorSynthAudioProcessorEditor(Puz
     osc(audioProcessor.apvts, "OSC1", "OSC1FMFREQUENCY", "OSC1FMDEPTH"),
     adsrComponent("Volume Envelope", audioProcessor.apvts, "ATTACK", "DECAY", "SUSTAIN", "RELEASE"),
     filter(audioProcessor.apvts, "FILTERTYPE", "FILTERCUTOFF", "FILTERRESONANCE"),
-    filterADSR("Filter Envelope", audioProcessor.apvts, "FILTERATTACK", "FILTERDECAY", "FILTERSUSTAIN", "FILTERRELEASE")
+    filterADSR("Filter Envelope", audioProcessor.apvts, "FILTERATTACK", "FILTERDECAY", "FILTERSUSTAIN", "FILTERRELEASE"),
+    distortion(audioProcessor.apvts, "DISTORTIONTYPE")
 {
-    setSize (620, 500);
+    setSize (620, 550);
     addAndMakeVisible(osc);
     addAndMakeVisible(adsrComponent);
     addAndMakeVisible(filter);
     addAndMakeVisible(filterADSR);
+    addAndMakeVisible(distortion);
 }
 
 PuzzleMirrorSynthAudioProcessorEditor::~PuzzleMirrorSynthAudioProcessorEditor()
@@ -46,5 +48,6 @@ void PuzzleMirrorSynthAudioProcessorEditor::resized()
     adsrComponent.setBounds(osc.getRight(), y, width, height);
     filter.setBounds(x, 240, width, height);
     filterADSR.setBounds(filter.getRight(), 240, width, height);
+    distortion.setBounds(x, 440, width, height);
 }
 

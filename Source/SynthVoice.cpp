@@ -54,22 +54,27 @@ void SynthVoice::prepareToPlay(double sampleRate, int samplesPerBlock, int outpu
     adsr.setSampleRate(sampleRate);
     filter.prepareToPlay(sampleRate, samplesPerBlock, outputChannels);
     filterADSR.setSampleRate(sampleRate);
+    distortion.prepare(spec);
     gain.prepare(spec);
-    gain.setGainLinear(0.10f);
+    gain.setGainDecibels(-6.0f);
 
     isPrepared = true;
 }
 
 void SynthVoice::updateADSR(const float attack, const float decay, const float sustain, const float release)
 {
-    adsr.updateADSR(attack, decay, sustain, release);
-    
+    adsr.updateADSR(attack, decay, sustain, release);    
 }
 
 void SynthVoice::updateFilter(const int filterType, const float cutoff, const float resonance)
 {
     auto modulator = filterADSR.getNextSample();
     filter.updateFilterParameters(filterType, cutoff, resonance, modulator);
+}
+
+void SynthVoice::updateDistortion(const int distortionType)
+{
+    distortion.updateDistortion(distortionType);
 }
 
 void SynthVoice::renderNextBlock(juce::AudioBuffer<float>& outputBuffer, int startSample, int numSamples) 
@@ -87,8 +92,8 @@ void SynthVoice::renderNextBlock(juce::AudioBuffer<float>& outputBuffer, int sta
     osc.getNextAudioBlock(audioBlock);
     adsr.applyEnvelopeToBuffer(synthBuffer, 0, synthBuffer.getNumSamples());
     filter.process(synthBuffer);
+    distortion.process(synthBuffer);
     gain.process(juce::dsp::ProcessContextReplacing<float>(audioBlock));
-
 
     for (int channels = 0; channels < outputBuffer.getNumChannels(); ++channels)
     {

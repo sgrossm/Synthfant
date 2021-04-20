@@ -12,11 +12,19 @@
         <FILE id="N1PoM1" name="FilterData.h" compile="0" resource="0" file="Source/Data/FilterData.h"/>
         <FILE id="UQ8odR" name="OscData.cpp" compile="1" resource="0" file="Source/Data/OscData.cpp"/>
         <FILE id="zVe62o" name="OscData.h" compile="0" resource="0" file="Source/Data/OscData.h"/>
+        <FILE id="V07ggl" name="WaveshaperData.cpp" compile="1" resource="0"
+              file="Source/Data/WaveshaperData.cpp"/>
+        <FILE id="JQSuOV" name="WaveshaperData.h" compile="0" resource="0"
+              file="Source/Data/WaveshaperData.h"/>
       </GROUP>
       <GROUP id="{709A5827-001C-99FE-3BE4-184F5EB72C9E}" name="UI">
         <FILE id="ujY80q" name="ADSRComponent.cpp" compile="1" resource="0"
               file="Source/UI/ADSRComponent.cpp"/>
         <FILE id="x2Uc6b" name="ADSRComponent.h" compile="0" resource="0" file="Source/UI/ADSRComponent.h"/>
+        <FILE id="r0iaYt" name="DistortionComponent.cpp" compile="1" resource="0"
+              file="Source/UI/DistortionComponent.cpp"/>
+        <FILE id="FfoExj" name="DistortionComponent.h" compile="0" resource="0"
+              file="Source/UI/DistortionComponent.h"/>
         <FILE id="uU4rCh" name="FilterComponent.cpp" compile="1" resource="0"
               file="Source/UI/FilterComponent.cpp"/>
         <FILE id="yS0YKz" name="FilterComponent.h" compile="0" resource="0"
