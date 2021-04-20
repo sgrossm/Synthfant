@@ -166,9 +166,22 @@ void PuzzleMirrorSynthAudioProcessor::processBlock (juce::AudioBuffer<float>& bu
             auto& sustain = *apvts.getRawParameterValue("SUSTAIN");
             auto& release = *apvts.getRawParameterValue("RELEASE");
 
-            voice->update(attack.load(), decay.load(), sustain.load(), release.load());
+            // Filter 
+            auto& filterType = *apvts.getRawParameterValue("FILTERTYPE");
+            auto& filterCutoff = *apvts.getRawParameterValue("FILTERCUTOFF");
+            auto& filterResonance = *apvts.getRawParameterValue("FILTERRESONANCE");
+
+            // Filter ADSR
+            auto& filterAttack = *apvts.getRawParameterValue("FILTERATTACK");
+            auto& filterDecay = *apvts.getRawParameterValue("FILTERDECAY");
+            auto& filterSustain = *apvts.getRawParameterValue("FILTERSUSTAIN");
+            auto& filterRelease = *apvts.getRawParameterValue("FILTERRELEASE");
+
             voice->getOscillator().setFMParameters(fmFrequency, fmDepth);
             voice->getOscillator().setOscillatorWaveform(waveformChoice);            
+            voice->getADSR().updateADSR(attack.load(), decay.load(), sustain.load(), release.load());
+            voice->getFilterADSR().updateADSR(filterAttack.load(), filterDecay.load(), filterSustain.load(), filterRelease.load());
+            voice->updateFilter(filterType, filterCutoff, filterResonance);
         }
     }
 
@@ -237,7 +250,29 @@ juce::AudioProcessorValueTreeState::ParameterLayout PuzzleMirrorSynthAudioProces
     params.push_back(std::make_unique<juce::AudioParameterFloat>("RELEASE", "Release",
         juce::NormalisableRange<float>{0.01f, 5.0f, 0.01f }, 0.25f));
 
+    // Filter 
+    params.push_back(std::make_unique<juce::AudioParameterChoice>("FILTERTYPE", "Filter Type",
+        juce::StringArray{ "lowpass", "bandpass", "highpass" }, 0));
 
+    params.push_back(std::make_unique<juce::AudioParameterFloat>("FILTERCUTOFF", "Filter Cutoff",
+        juce::NormalisableRange<float>{20.0f, 20000.0f, 0.01f, 0.6f }, 200.0f));
+
+    params.push_back(std::make_unique<juce::AudioParameterFloat>("FILTERRESONANCE", "Filter Resonance",
+        juce::NormalisableRange<float>{1.0f, 10.0f, 0.01f }, 1.0f));
+
+
+    // Filter ADSR
+    params.push_back(std::make_unique<juce::AudioParameterFloat>("FILTERATTACK", "Filter Attack",
+        juce::NormalisableRange<float>{0.1f, 1.0f, 0.01f }, 0.1f));
+
+    params.push_back(std::make_unique<juce::AudioParameterFloat>("FILTERDECAY", "Filter Decay",
+        juce::NormalisableRange<float>{0.1f, 1.0f, 0.01f }, 0.1f));
+
+    params.push_back(std::make_unique<juce::AudioParameterFloat>("FILTERSUSTAIN", "Filter Sustain",
+        juce::NormalisableRange<float>{0.1f, 1.0f, 0.01f }, 1.0f));
+
+    params.push_back(std::make_unique<juce::AudioParameterFloat>("FILTERRELEASE", "Filter Release",
+        juce::NormalisableRange<float>{0.01f, 5.0f, 0.01f }, 0.25f));
 
     return { params.begin(), params.end() };
 }

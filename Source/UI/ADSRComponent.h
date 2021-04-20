@@ -18,7 +18,8 @@
 class ADSRComponent  : public juce::Component
 {
 public:
-    ADSRComponent(juce::AudioProcessorValueTreeState& apvts);
+    ADSRComponent(juce::String name, juce::AudioProcessorValueTreeState& apvts, juce::String attackID,
+        juce::String decayID, juce::String sustainID, juce::String releaseID);
     ~ADSRComponent() override;
     void paint (juce::Graphics&) override;
     void resized() override;
@@ -27,6 +28,8 @@ private:
     using Attachment = juce::AudioProcessorValueTreeState::SliderAttachment;
     void setSliderWithLabel(juce::Slider& slider, juce::Label& label, juce::AudioProcessorValueTreeState& apvts,
                             juce::String parameterID, std::unique_ptr<Attachment>& sliderAttachment);
+
+    juce::String componentName = "";
 
     juce::Slider attackSlider;
     juce::Slider decaySlider;

@@ -19,12 +19,13 @@ void SynthVoice::startNote(int midiNoteNumber, float velocity, juce::Synthesiser
 {
     osc.setOscillatorFrequency(midiNoteNumber);
     adsr.noteOn();
+    filterADSR.noteOn();
 }
 
 void SynthVoice::stopNote(float velocity, bool allowTailOff) 
 {
     adsr.noteOff();
- 
+    filterADSR.noteOff();
     if (!allowTailOff || !adsr.isActive())
         clearCurrentNote();
     
@@ -50,16 +51,25 @@ void SynthVoice::prepareToPlay(double sampleRate, int samplesPerBlock, int outpu
     spec.numChannels = outputChannels;
 
     osc.prepareToPlay(spec);
+    adsr.setSampleRate(sampleRate);
+    filter.prepareToPlay(sampleRate, samplesPerBlock, outputChannels);
+    filterADSR.setSampleRate(sampleRate);
     gain.prepare(spec);
-
     gain.setGainLinear(0.10f);
 
     isPrepared = true;
 }
 
-void SynthVoice::update(const float attack, const float decay, const float sustain, const float release)
+void SynthVoice::updateADSR(const float attack, const float decay, const float sustain, const float release)
 {
     adsr.updateADSR(attack, decay, sustain, release);
+    
+}
+
+void SynthVoice::updateFilter(const int filterType, const float cutoff, const float resonance)
+{
+    auto modulator = filterADSR.getNextSample();
+    filter.updateFilterParameters(filterType, cutoff, resonance, modulator);
 }
 
 void SynthVoice::renderNextBlock(juce::AudioBuffer<float>& outputBuffer, int startSample, int numSamples) 
@@ -70,13 +80,15 @@ void SynthVoice::renderNextBlock(juce::AudioBuffer<float>& outputBuffer, int sta
         return;
 
     synthBuffer.setSize(outputBuffer.getNumChannels(), numSamples, false, false, true);
+    filterADSR.applyEnvelopeToBuffer(outputBuffer, 0, numSamples);
     synthBuffer.clear();
 
     juce::dsp::AudioBlock<float> audioBlock{ synthBuffer };    // audio block is an alias for outputBuffer
     osc.getNextAudioBlock(audioBlock);
+    adsr.applyEnvelopeToBuffer(synthBuffer, 0, synthBuffer.getNumSamples());
+    filter.process(synthBuffer);
     gain.process(juce::dsp::ProcessContextReplacing<float>(audioBlock));
 
-    adsr.applyEnvelopeToBuffer(synthBuffer, 0, synthBuffer.getNumSamples());
 
     for (int channels = 0; channels < outputBuffer.getNumChannels(); ++channels)
     {

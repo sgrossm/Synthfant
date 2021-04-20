@@ -32,7 +32,7 @@ private:
 
     juce::ComboBox waveformSelector;
     std::unique_ptr<juce::AudioProcessorValueTreeState::ComboBoxAttachment> oscWaveSelectorAttachment;
-    juce::Label waveformLabel {"Waveform"};
+    juce::Label waveformLabel {"Wave type", "Wave type"};
 
     juce::Slider fmFrequencySlider;
     juce::Slider fmDepthSlider;

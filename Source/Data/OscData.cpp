@@ -60,12 +60,12 @@ void OscData::getNextAudioBlock(juce::dsp::AudioBlock<float>& block)
 void OscData::processFMOsc(juce::dsp::AudioBlock<float>& block)
 {
     for (auto channels = 0; channels < block.getNumChannels(); ++channels)
-{
-    for (auto samples = 0; samples < block.getNumSamples(); ++samples)
     {
-        fmModulator = fmOscillator.processSample(block.getSample(channels, samples)) * fmDepth;
+        for (auto samples = 0; samples < block.getNumSamples(); ++samples)
+        {
+            fmModulator = fmOscillator.processSample(block.getSample(channels, samples)) * fmDepth;
+        }
     }
-}
 }
 
 void OscData::setFMParameters(const float frequency, const float depth)

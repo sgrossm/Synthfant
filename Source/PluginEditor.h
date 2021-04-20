@@ -12,6 +12,7 @@
 #include "PluginProcessor.h"
 #include "UI/ADSRComponent.h"
 #include "UI/OscComponent.h"
+#include "UI/FilterComponent.h"
 
 //==============================================================================
 /**
@@ -31,6 +32,8 @@ private:
     PuzzleMirrorSynthAudioProcessor& audioProcessor;
     OscComponent osc;
     ADSRComponent adsrComponent;
+    FilterComponent filter;
+    ADSRComponent filterADSR;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PuzzleMirrorSynthAudioProcessorEditor)
 };
