@@ -21,6 +21,4 @@ public:
 
 private:
     juce::dsp::WaveShaper<float> distortion;
-    juce::dsp::Gain<float> preGain;
-    juce::dsp::Gain<float> postGain;
 };

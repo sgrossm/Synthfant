@@ -8,10 +8,18 @@
       <GROUP id="{57F828D7-F793-2F47-6A87-3D14FE1ED2F1}" name="Data">
         <FILE id="ZIFAFH" name="ADSRData.cpp" compile="1" resource="0" file="Source/Data/ADSRData.cpp"/>
         <FILE id="kRkFjf" name="ADSRData.h" compile="0" resource="0" file="Source/Data/ADSRData.h"/>
+        <FILE id="njOsQr" name="ReverbData.cpp" compile="1" resource="0" file="Source/Data/ReverbData.cpp"/>
+        <FILE id="oGSRxK" name="ReverbData.h" compile="0" resource="0" file="Source/Data/ReverbData.h"/>
+        <FILE id="C9Kk8d" name="DelayData.cpp" compile="1" resource="0" file="Source/Data/DelayData.cpp"/>
+        <FILE id="CQehB6" name="DelayData.h" compile="0" resource="0" file="Source/Data/DelayData.h"/>
+        <FILE id="MzBDfe" name="DelayLine.cpp" compile="1" resource="0" file="Source/Data/DelayLine.cpp"/>
+        <FILE id="TOaGl3" name="DelayLine.h" compile="0" resource="0" file="Source/Data/DelayLine.h"/>
         <FILE id="I6JRmw" name="FilterData.cpp" compile="1" resource="0" file="Source/Data/FilterData.cpp"/>
         <FILE id="N1PoM1" name="FilterData.h" compile="0" resource="0" file="Source/Data/FilterData.h"/>
         <FILE id="UQ8odR" name="OscData.cpp" compile="1" resource="0" file="Source/Data/OscData.cpp"/>
         <FILE id="zVe62o" name="OscData.h" compile="0" resource="0" file="Source/Data/OscData.h"/>
+        <FILE id="xws509" name="PhaserData.cpp" compile="1" resource="0" file="Source/Data/PhaserData.cpp"/>
+        <FILE id="njFKAx" name="PhaserData.h" compile="0" resource="0" file="Source/Data/PhaserData.h"/>
         <FILE id="V07ggl" name="WaveshaperData.cpp" compile="1" resource="0"
               file="Source/Data/WaveshaperData.cpp"/>
         <FILE id="JQSuOV" name="WaveshaperData.h" compile="0" resource="0"
@@ -21,6 +29,14 @@
         <FILE id="ujY80q" name="ADSRComponent.cpp" compile="1" resource="0"
               file="Source/UI/ADSRComponent.cpp"/>
         <FILE id="x2Uc6b" name="ADSRComponent.h" compile="0" resource="0" file="Source/UI/ADSRComponent.h"/>
+        <FILE id="OUK6dt" name="ReverbComponent.cpp" compile="1" resource="0"
+              file="Source/UI/ReverbComponent.cpp"/>
+        <FILE id="C0yK3G" name="ReverbComponent.h" compile="0" resource="0"
+              file="Source/UI/ReverbComponent.h"/>
+        <FILE id="p09guH" name="DelayComponent.cpp" compile="1" resource="0"
+              file="Source/UI/DelayComponent.cpp"/>
+        <FILE id="h9Jb9q" name="DelayComponent.h" compile="0" resource="0"
+              file="Source/UI/DelayComponent.h"/>
         <FILE id="r0iaYt" name="DistortionComponent.cpp" compile="1" resource="0"
               file="Source/UI/DistortionComponent.cpp"/>
         <FILE id="FfoExj" name="DistortionComponent.h" compile="0" resource="0"
@@ -32,6 +48,10 @@
         <FILE id="iEsp6H" name="OscComponent.cpp" compile="1" resource="0"
               file="Source/UI/OscComponent.cpp"/>
         <FILE id="R33XHj" name="OscComponent.h" compile="0" resource="0" file="Source/UI/OscComponent.h"/>
+        <FILE id="yn17lP" name="PhaserComponent.cpp" compile="1" resource="0"
+              file="Source/UI/PhaserComponent.cpp"/>
+        <FILE id="LEJUo6" name="PhaserComponent.h" compile="0" resource="0"
+              file="Source/UI/PhaserComponent.h"/>
       </GROUP>
       <FILE id="TvWDPX" name="PluginProcessor.cpp" compile="1" resource="0"
             file="Source/PluginProcessor.cpp"/>

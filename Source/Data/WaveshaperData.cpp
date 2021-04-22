@@ -31,20 +31,18 @@ void WaveshaperData::updateDistortion(const int distortionType)
         break;
 
     case 1: 
-        // Type 1
-        preGain.setGainDecibels(50.0f);
-        distortion.functionToUse = [](float x) { return juce::jlimit<float>(-0.1f, 0.1f, x);};
-        postGain.setGainDecibels(-10.0f);
+        // Soft Clipping
+        distortion.functionToUse = [](float x) { return juce::jlimit<float>(-0.8f, 0.8f, x);};
         break;
 
     case 2:
-        // Type 2
-        distortion.functionToUse = [](float x) {return tanh(x);};
+        // Hard-Clipping
+        distortion.functionToUse = [](float x) {return juce::jlimit<float>(-0.3f, 0.3f, x);};
         break;
 
     case 3:
-        // Type 3
-        distortion.functionToUse = [](float x) {return juce::jlimit<float>(-0.8f, 0.8f, x);};
+        // Arctangent nonlinearity
+        distortion.functionToUse = [](float x) {return (2.0f / juce::MathConstants<float>::pi) * atan(x* 10);};
         break;
 
     default:

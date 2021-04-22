@@ -15,6 +15,7 @@
 #include "Data/ADSRData.h"
 #include "Data/FilterData.h"
 #include "Data/WaveshaperData.h"
+#include "Data/ReverbData.h"
 
 class SynthVoice : public juce::SynthesiserVoice
 {
@@ -25,10 +26,10 @@ public:
     void pitchWheelMoved(int newPitchWheelValue) override;
     void controllerMoved(int controllerNumber, int newControllerValue) override;    
     void prepareToPlay(double sampleRate, int samplesPerBlock, int outputChannels);
-    void updateADSR(const float attack, const float decay, const float sustain, const float release);
+    void renderNextBlock(juce::AudioBuffer<float>& outputBuffer, int startSample, int numSamples) override;
     void updateFilter(const int filterType, const float cutoff, const float resonance);
     void updateDistortion(const int distortionType);
-    void renderNextBlock(juce::AudioBuffer<float>& outputBuffer, int startSample, int numSamples) override;
+
     OscData& getOscillator() { return osc; }
     ADSRData& getADSR() { return adsr; }
     FilterData& getFilter() { return filter; }

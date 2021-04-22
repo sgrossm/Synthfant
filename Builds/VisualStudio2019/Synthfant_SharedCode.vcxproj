@@ -131,13 +131,20 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Source\Data\ADSRData.cpp" />
+    <ClCompile Include="..\..\Source\Data\ReverbData.cpp" />
+    <ClCompile Include="..\..\Source\Data\DelayData.cpp" />
+    <ClCompile Include="..\..\Source\Data\DelayLine.cpp" />
     <ClCompile Include="..\..\Source\Data\FilterData.cpp" />
     <ClCompile Include="..\..\Source\Data\OscData.cpp" />
+    <ClCompile Include="..\..\Source\Data\PhaserData.cpp" />
     <ClCompile Include="..\..\Source\Data\WaveshaperData.cpp" />
     <ClCompile Include="..\..\Source\UI\ADSRComponent.cpp" />
+    <ClCompile Include="..\..\Source\UI\ReverbComponent.cpp" />
+    <ClCompile Include="..\..\Source\UI\DelayComponent.cpp" />
     <ClCompile Include="..\..\Source\UI\DistortionComponent.cpp" />
     <ClCompile Include="..\..\Source\UI\FilterComponent.cpp" />
     <ClCompile Include="..\..\Source\UI\OscComponent.cpp" />
+    <ClCompile Include="..\..\Source\UI\PhaserComponent.cpp" />
     <ClCompile Include="..\..\Source\PluginProcessor.cpp" />
     <ClCompile Include="..\..\Source\PluginEditor.cpp" />
     <ClCompile Include="..\..\Source\SynthVoice.cpp" />
@@ -2164,13 +2171,20 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Source\Data\ADSRData.h" />
+    <ClInclude Include="..\..\Source\Data\ReverbData.h" />
+    <ClInclude Include="..\..\Source\Data\DelayData.h" />
+    <ClInclude Include="..\..\Source\Data\DelayLine.h" />
     <ClInclude Include="..\..\Source\Data\FilterData.h" />
     <ClInclude Include="..\..\Source\Data\OscData.h" />
+    <ClInclude Include="..\..\Source\Data\PhaserData.h" />
     <ClInclude Include="..\..\Source\Data\WaveshaperData.h" />
     <ClInclude Include="..\..\Source\UI\ADSRComponent.h" />
+    <ClInclude Include="..\..\Source\UI\ReverbComponent.h" />
+    <ClInclude Include="..\..\Source\UI\DelayComponent.h" />
     <ClInclude Include="..\..\Source\UI\DistortionComponent.h" />
     <ClInclude Include="..\..\Source\UI\FilterComponent.h" />
     <ClInclude Include="..\..\Source\UI\OscComponent.h" />
+    <ClInclude Include="..\..\Source\UI\PhaserComponent.h" />
     <ClInclude Include="..\..\Source\PluginProcessor.h" />
     <ClInclude Include="..\..\Source\PluginEditor.h" />
     <ClInclude Include="..\..\Source\SynthVoice.h" />

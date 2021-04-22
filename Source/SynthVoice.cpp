@@ -51,19 +51,46 @@ void SynthVoice::prepareToPlay(double sampleRate, int samplesPerBlock, int outpu
     spec.numChannels = outputChannels;
 
     osc.prepareToPlay(spec);
-    adsr.setSampleRate(sampleRate);
-    filter.prepareToPlay(sampleRate, samplesPerBlock, outputChannels);
     filterADSR.setSampleRate(sampleRate);
-    distortion.prepare(spec);
+    filter.prepareToPlay(sampleRate, samplesPerBlock, outputChannels);
+    adsr.setSampleRate(sampleRate);
+    
+    distortion.prepare(spec);    
+
     gain.prepare(spec);
     gain.setGainDecibels(-6.0f);
-
     isPrepared = true;
 }
 
-void SynthVoice::updateADSR(const float attack, const float decay, const float sustain, const float release)
+void SynthVoice::renderNextBlock(juce::AudioBuffer<float>& outputBuffer, int startSample, int numSamples) 
 {
-    adsr.updateADSR(attack, decay, sustain, release);    
+    jassert(isPrepared);
+
+    if (!isVoiceActive())
+        return;
+
+    synthBuffer.setSize(outputBuffer.getNumChannels(), numSamples, false, false, true);
+
+    synthBuffer.clear();
+
+    juce::dsp::AudioBlock<float> audioBlock{ synthBuffer };    // audio block is an alias for outputBuffer
+    osc.getNextAudioBlock(audioBlock);
+    adsr.applyEnvelopeToBuffer(synthBuffer, 0, synthBuffer.getNumSamples());
+    filter.process(synthBuffer);
+    filterADSR.applyEnvelopeToBuffer(synthBuffer, 0, synthBuffer.getNumSamples());
+    distortion.process(synthBuffer);
+
+    gain.process(juce::dsp::ProcessContextReplacing<float>(audioBlock));
+    
+
+    for (int channels = 0; channels < outputBuffer.getNumChannels(); ++channels)
+    {
+        outputBuffer.addFrom(channels, startSample, synthBuffer, channels, 0, numSamples);
+
+        if (!adsr.isActive())
+            clearCurrentNote();
+        
+    }
 }
 
 void SynthVoice::updateFilter(const int filterType, const float cutoff, const float resonance)
@@ -75,32 +102,4 @@ void SynthVoice::updateFilter(const int filterType, const float cutoff, const fl
 void SynthVoice::updateDistortion(const int distortionType)
 {
     distortion.updateDistortion(distortionType);
-}
-
-void SynthVoice::renderNextBlock(juce::AudioBuffer<float>& outputBuffer, int startSample, int numSamples) 
-{
-    jassert(isPrepared);
-
-    if (!isVoiceActive())
-        return;
-
-    synthBuffer.setSize(outputBuffer.getNumChannels(), numSamples, false, false, true);
-    filterADSR.applyEnvelopeToBuffer(outputBuffer, 0, numSamples);
-    synthBuffer.clear();
-
-    juce::dsp::AudioBlock<float> audioBlock{ synthBuffer };    // audio block is an alias for outputBuffer
-    osc.getNextAudioBlock(audioBlock);
-    adsr.applyEnvelopeToBuffer(synthBuffer, 0, synthBuffer.getNumSamples());
-    filter.process(synthBuffer);
-    distortion.process(synthBuffer);
-    gain.process(juce::dsp::ProcessContextReplacing<float>(audioBlock));
-
-    for (int channels = 0; channels < outputBuffer.getNumChannels(); ++channels)
-    {
-        outputBuffer.addFrom(channels, startSample, synthBuffer, channels, 0, numSamples);
-
-        if (!adsr.isActive())
-            clearCurrentNote();
-        
-    }
 }

@@ -462,16 +462,34 @@
     <ClCompile Include="..\..\Source\Data\ADSRData.cpp">
       <Filter>Synthfant\Source\Data</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Data\ReverbData.cpp">
+      <Filter>Synthfant\Source\Data</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Data\DelayData.cpp">
+      <Filter>Synthfant\Source\Data</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Data\DelayLine.cpp">
+      <Filter>Synthfant\Source\Data</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Data\FilterData.cpp">
       <Filter>Synthfant\Source\Data</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Data\OscData.cpp">
       <Filter>Synthfant\Source\Data</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Data\PhaserData.cpp">
+      <Filter>Synthfant\Source\Data</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Data\WaveshaperData.cpp">
       <Filter>Synthfant\Source\Data</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\UI\ADSRComponent.cpp">
+      <Filter>Synthfant\Source\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\UI\ReverbComponent.cpp">
+      <Filter>Synthfant\Source\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\UI\DelayComponent.cpp">
       <Filter>Synthfant\Source\UI</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\UI\DistortionComponent.cpp">
@@ -481,6 +499,9 @@
       <Filter>Synthfant\Source\UI</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\UI\OscComponent.cpp">
+      <Filter>Synthfant\Source\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\UI\PhaserComponent.cpp">
       <Filter>Synthfant\Source\UI</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\PluginProcessor.cpp">
@@ -2543,16 +2564,34 @@
     <ClInclude Include="..\..\Source\Data\ADSRData.h">
       <Filter>Synthfant\Source\Data</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Source\Data\ReverbData.h">
+      <Filter>Synthfant\Source\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Data\DelayData.h">
+      <Filter>Synthfant\Source\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Data\DelayLine.h">
+      <Filter>Synthfant\Source\Data</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\Data\FilterData.h">
       <Filter>Synthfant\Source\Data</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Data\OscData.h">
       <Filter>Synthfant\Source\Data</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Source\Data\PhaserData.h">
+      <Filter>Synthfant\Source\Data</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\Data\WaveshaperData.h">
       <Filter>Synthfant\Source\Data</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\UI\ADSRComponent.h">
+      <Filter>Synthfant\Source\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\UI\ReverbComponent.h">
+      <Filter>Synthfant\Source\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\UI\DelayComponent.h">
       <Filter>Synthfant\Source\UI</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\UI\DistortionComponent.h">
@@ -2562,6 +2601,9 @@
       <Filter>Synthfant\Source\UI</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\UI\OscComponent.h">
+      <Filter>Synthfant\Source\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\UI\PhaserComponent.h">
       <Filter>Synthfant\Source\UI</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\PluginProcessor.h">

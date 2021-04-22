@@ -14,6 +14,7 @@
 #include "UI/OscComponent.h"
 #include "UI/FilterComponent.h"
 #include "UI/DistortionComponent.h"
+#include "UI/ReverbComponent.h"
 
 //==============================================================================
 /**
@@ -29,13 +30,13 @@ public:
     void resized() override;
 
 private:
-    //juce::MidiKeyboardComponent keyboardComponent;
     PuzzleMirrorSynthAudioProcessor& audioProcessor;
     OscComponent osc;
     ADSRComponent adsrComponent;
     FilterComponent filter;
     ADSRComponent filterADSR;
     DistortionComponent distortion;
+    ReverbComponent reverb;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PuzzleMirrorSynthAudioProcessorEditor)
 };

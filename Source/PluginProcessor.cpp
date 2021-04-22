@@ -98,6 +98,11 @@ void PuzzleMirrorSynthAudioProcessor::changeProgramName (int index, const juce::
 void PuzzleMirrorSynthAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
 {
     synth.setCurrentPlaybackSampleRate(sampleRate);
+    juce::dsp::ProcessSpec spec;
+    spec.maximumBlockSize = samplesPerBlock;
+    spec.sampleRate = sampleRate;
+    spec.numChannels = getTotalNumOutputChannels();
+    reverb.prepare(spec);
 
     for (int i = 0; i < synth.getNumVoices(); ++i)
     {
@@ -177,18 +182,31 @@ void PuzzleMirrorSynthAudioProcessor::processBlock (juce::AudioBuffer<float>& bu
             auto& filterSustain = *apvts.getRawParameterValue("FILTERSUSTAIN");
             auto& filterRelease = *apvts.getRawParameterValue("FILTERRELEASE");
 
+            // Distortion
             auto& distortionType = *apvts.getRawParameterValue("DISTORTIONTYPE");
-
-            voice->getOscillator().setFMParameters(fmFrequency, fmDepth);
+            
             voice->getOscillator().setOscillatorWaveform(waveformChoice);            
+            voice->getOscillator().setFMParameters(fmFrequency, fmDepth);
             voice->getADSR().updateADSR(attack.load(), decay.load(), sustain.load(), release.load());
-            voice->getFilterADSR().updateADSR(filterAttack.load(), filterDecay.load(), filterSustain.load(), filterRelease.load());
             voice->updateFilter(filterType, filterCutoff, filterResonance);
+            voice->getFilterADSR().updateADSR(filterAttack.load(), filterDecay.load(), filterSustain.load(), filterRelease.load());
             voice->updateDistortion(distortionType);
+           
         }
     }
 
     synth.renderNextBlock(buffer, midiMessages, 0, buffer.getNumSamples());
+    
+    // Reverb
+    reverb.process(buffer);
+    auto& reverbSize = *apvts.getRawParameterValue("REVERBROOM");
+    auto& reverbDamp = *apvts.getRawParameterValue("REVERBDAMP");
+    auto& reverbWet = *apvts.getRawParameterValue("REVERBWET");
+    auto& reverbDry = *apvts.getRawParameterValue("REVERBDRY");
+    auto& reverbWidth = *apvts.getRawParameterValue("REVERBWIDTH");
+    auto& reverbFreeze = *apvts.getRawParameterValue("REVERBFREEZE");
+    reverb.updateReverb(reverbSize, reverbDamp, reverbWet, reverbDry, reverbWidth, reverbFreeze);
+
 }
 
 //==============================================================================
@@ -235,7 +253,7 @@ juce::AudioProcessorValueTreeState::ParameterLayout PuzzleMirrorSynthAudioProces
 
     // FM 
     params.push_back(std::make_unique<juce::AudioParameterFloat>("OSC1FMFREQUENCY", "Osc 1 FM Frequency",
-        juce::NormalisableRange<float>{0.0f, 1000.0f, 0.01f}, 5.0f));
+        juce::NormalisableRange<float>{0.0f, 1000.0f, 0.01f}, 0.0f));
 
     params.push_back(std::make_unique<juce::AudioParameterFloat>("OSC1FMDEPTH", "Osc 1 FM Depth",
         juce::NormalisableRange<float>{0.0f, 1000.0f, 0.01f}, 0.0f));
@@ -266,20 +284,34 @@ juce::AudioProcessorValueTreeState::ParameterLayout PuzzleMirrorSynthAudioProces
 
     // Filter ADSR
     params.push_back(std::make_unique<juce::AudioParameterFloat>("FILTERATTACK", "Filter Attack",
-        juce::NormalisableRange<float>{0.1f, 1.0f, 0.01f }, 0.1f));
+        juce::NormalisableRange<float>{0.0f, 1.0f, 0.01f }, 0.0f));
 
     params.push_back(std::make_unique<juce::AudioParameterFloat>("FILTERDECAY", "Filter Decay",
-        juce::NormalisableRange<float>{0.1f, 1.0f, 0.01f }, 0.1f));
+        juce::NormalisableRange<float>{0.01f, 1.0f, 0.01f }, 0.1f));
 
     params.push_back(std::make_unique<juce::AudioParameterFloat>("FILTERSUSTAIN", "Filter Sustain",
-        juce::NormalisableRange<float>{0.1f, 1.0f, 0.01f }, 1.0f));
+        juce::NormalisableRange<float>{0.0f, 1.0f, 0.01f }, 1.0f));
 
     params.push_back(std::make_unique<juce::AudioParameterFloat>("FILTERRELEASE", "Filter Release",
         juce::NormalisableRange<float>{0.01f, 5.0f, 0.01f }, 0.25f));
 
     // Waveshaper
     params.push_back(std::make_unique<juce::AudioParameterChoice>("DISTORTIONTYPE", "Distortion Type",
-        juce::StringArray{ "None", "Type 1", "Type 2", "Type 3" }, 1));
+        juce::StringArray{ "None", "Velvet", "Cheesebread", "Sandy Toes" }, 0));
+
+    //// Reverb
+    params.push_back(std::make_unique<juce::AudioParameterFloat>("REVERBROOM", "Reverb Room",
+        juce::NormalisableRange<float>{0.0f, 1.0f, 0.1f }, 0.0f));
+    params.push_back(std::make_unique<juce::AudioParameterFloat>("REVERBDAMP", "Reverb Damp",
+        juce::NormalisableRange<float>{0.0f, 1.0f, 0.1f }, 0.0f));
+    params.push_back(std::make_unique<juce::AudioParameterFloat>("REVERBWET", "Reverb Wet",
+        juce::NormalisableRange<float>{0.0f, 1.0f, 0.1f }, 0.0f));
+    params.push_back(std::make_unique<juce::AudioParameterFloat>("REVERBDRY", "Reverb Dy",
+        juce::NormalisableRange<float>{0.0f, 1.0f, 0.1f }, 1.0f));
+    params.push_back(std::make_unique<juce::AudioParameterFloat>("REVERBWIDTH", "Reverb Width",
+        juce::NormalisableRange<float>{0.0f, 1.0f, 0.1f }, 0.0f));
+    params.push_back(std::make_unique<juce::AudioParameterFloat>("REVERBFREEZE", "Reverb Freeze",
+        juce::NormalisableRange<float>{0.0f, 1.0f, 0.1f }, 0.0f));
 
     return { params.begin(), params.end() };
 }
