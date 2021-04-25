@@ -14,7 +14,7 @@
 //==============================================================================
 DistortionComponent::DistortionComponent(juce::AudioProcessorValueTreeState& apvts, juce::String distortionID)
 {
-    juce::StringArray waveChoices = { "None", "Velvet", "Cheesebread", "Sandhead" };
+    juce::StringArray waveChoices = { "None", "Creamy", "Cheesy", "Cronchy" };
     distortionType.addItemList(waveChoices, 1);
     addAndMakeVisible(distortionType);
 

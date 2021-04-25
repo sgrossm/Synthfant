@@ -295,10 +295,10 @@ juce::AudioProcessorValueTreeState::ParameterLayout PuzzleMirrorSynthAudioProces
 
     // ADSR
     params.push_back(std::make_unique<juce::AudioParameterFloat>("ATTACK", "Attack",
-        juce::NormalisableRange<float>{0.0f, 1.0f, 0.01f }, 0.01f));
+        juce::NormalisableRange<float>{0.0f, 1.0f, 0.01f }, 0.06f));
 
     params.push_back(std::make_unique<juce::AudioParameterFloat>("DECAY", "Decay",
-        juce::NormalisableRange<float>{0.01f, 1.0f, 0.01f }, 0.1f));
+        juce::NormalisableRange<float>{0.01f, 1.0f, 0.01f }, 1.0f));
 
     params.push_back(std::make_unique<juce::AudioParameterFloat>("SUSTAIN", "Sustain",
         juce::NormalisableRange<float>{0.0f, 1.0f, 0.01f }, 1.0f));
@@ -319,7 +319,7 @@ juce::AudioProcessorValueTreeState::ParameterLayout PuzzleMirrorSynthAudioProces
 
     // Filter ADSR
     params.push_back(std::make_unique<juce::AudioParameterFloat>("FILTERATTACK", "Filter Attack",
-        juce::NormalisableRange<float>{0.0f, 1.0f, 0.01f }, 0.0f));
+        juce::NormalisableRange<float>{0.0f, 1.0f, 0.01f }, 0.06f));
 
     params.push_back(std::make_unique<juce::AudioParameterFloat>("FILTERDECAY", "Filter Decay",
         juce::NormalisableRange<float>{0.01f, 1.0f, 0.01f }, 0.1f));
@@ -350,7 +350,7 @@ juce::AudioProcessorValueTreeState::ParameterLayout PuzzleMirrorSynthAudioProces
 
     // Phaser
     params.push_back(std::make_unique<juce::AudioParameterFloat>("PHASERRATE", "Phaser Rate",
-        juce::NormalisableRange<float>{0.0f, 50.0f, 0.01f, 0.1f }, 1.0f));
+        juce::NormalisableRange<float>{0.0f, 50.0f, 0.01f, 0.6f }, 1.0f));
     params.push_back(std::make_unique<juce::AudioParameterFloat>("PHASERDEPTH", "Phaser Depth",
         juce::NormalisableRange<float>{0.0f, 1.0f, 0.1f }, 0.0f));
     params.push_back(std::make_unique<juce::AudioParameterFloat>("PHASERCENTERFREQ", "Phaser Center Frequency",
@@ -362,7 +362,7 @@ juce::AudioProcessorValueTreeState::ParameterLayout PuzzleMirrorSynthAudioProces
 
     // Chorus
     params.push_back(std::make_unique<juce::AudioParameterFloat>("CHORUSRATE", "Chorus Rate",
-        juce::NormalisableRange<float>{0.0f, 100.0f, 0.01f, 0.6f }, 1.0f));
+        juce::NormalisableRange<float>{0.0f, 100.0f, 0.01f, 0.5f }, 1.0f));
     params.push_back(std::make_unique<juce::AudioParameterFloat>("CHORUSDEPTH", "Chorus Depth",
         juce::NormalisableRange<float>{0.0f, 1.0f, 0.1f }, 0.0f));
     params.push_back(std::make_unique<juce::AudioParameterFloat>("CHORUSCENTERDELAY", "Chorus Center Delay",
@@ -376,15 +376,15 @@ juce::AudioProcessorValueTreeState::ParameterLayout PuzzleMirrorSynthAudioProces
     params.push_back(std::make_unique<juce::AudioParameterFloat>("THRESHOLD", "Threshold",
         juce::NormalisableRange<float>{-24.0f, 0.0f, 0.1f }, 0.0f));
     params.push_back(std::make_unique<juce::AudioParameterFloat>("RATIO", "Ratio",
-        juce::NormalisableRange<float>{1.0f, 10.0f, 0.1f}, 1.0f));
+        juce::NormalisableRange<float>{1.0f, 50.0f, 0.1f, 0.6f}, 1.0f));
     params.push_back(std::make_unique<juce::AudioParameterFloat>("COMPATTACK", "Comp Attack",
-        juce::NormalisableRange<float>{0.0f, 1200.0f, 0.1f }, 20.0f));
+        juce::NormalisableRange<float>{0.0f, 800.0f, 0.1f, 0.5f }, 20.0f));
     params.push_back(std::make_unique<juce::AudioParameterFloat>("COMPRELEASE", "Comp Release",
-        juce::NormalisableRange<float>{0.01f, 1200.0f, 0.1f }, 70.0f));
+        juce::NormalisableRange<float>{0.01f, 800.0f, 0.1f , 0.5f}, 10.0f));
 
     // Gain
     params.push_back(std::make_unique<juce::AudioParameterFloat>("GAIN", "Gain", 
-        juce::NormalisableRange<float>{-64.0f, 0.0f, 0.1f}, -12.0f));
+        juce::NormalisableRange<float>{-48.0f, 0.0f, 0.1f}, -12.0f));
 
     return { params.begin(), params.end() };
 }
