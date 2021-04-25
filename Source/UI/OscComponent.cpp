@@ -14,7 +14,7 @@
 //==============================================================================
 OscComponent::OscComponent(juce::AudioProcessorValueTreeState& apvts, juce::String waveID, juce::String fmFreqID, juce::String fmDepthID)
 {
-    juce::StringArray waveChoices = { "Sine", "Saw", "Square" };
+    juce::StringArray waveChoices = { "Sine", "Saw", "Square", "White Noise" };
     waveformSelector.addItemList(waveChoices, 1);
     addAndMakeVisible(waveformSelector);
 

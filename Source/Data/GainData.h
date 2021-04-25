@@ -18,6 +18,8 @@ public:
     void setGainLevel(const float newGain);
     void process(juce::AudioBuffer<float>& buffer);
     void reset();
+
+
 private:
     juce::dsp::Gain<float> gain;
     bool isPrepared{ false };

@@ -39,6 +39,11 @@ void OscData::setOscillatorWaveform(const int waveformChoice)
             initialise([](float x) { return x < 0.0f ? -1.0f : 1.0f; }); 
             break;
 
+        case 3:
+            // White noise
+            initialise([](float x) { return juce::Random::getSystemRandom().nextFloat() * x - x/2;});
+            break;
+
         default:
             jassertfalse;
             break;
