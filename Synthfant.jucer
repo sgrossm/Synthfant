@@ -6,14 +6,18 @@
   <MAINGROUP id="roJTac" name="Synthfant">
     <GROUP id="{E36BD4BA-B4BC-37F5-EB01-52F8DDA18294}" name="Source">
       <GROUP id="{57F828D7-F793-2F47-6A87-3D14FE1ED2F1}" name="Data">
+        <FILE id="w9wyL8" name="GainData.cpp" compile="1" resource="0" file="Source/Data/GainData.cpp"/>
+        <FILE id="WpuJAV" name="GainData.h" compile="0" resource="0" file="Source/Data/GainData.h"/>
+        <FILE id="eZdryV" name="CompressorData.cpp" compile="1" resource="0"
+              file="Source/Data/CompressorData.cpp"/>
+        <FILE id="IItvrS" name="CompressorData.h" compile="0" resource="0"
+              file="Source/Data/CompressorData.h"/>
+        <FILE id="F4YbPW" name="ChorusData.cpp" compile="1" resource="0" file="Source/Data/ChorusData.cpp"/>
+        <FILE id="x5k6T6" name="ChorusData.h" compile="0" resource="0" file="Source/Data/ChorusData.h"/>
         <FILE id="ZIFAFH" name="ADSRData.cpp" compile="1" resource="0" file="Source/Data/ADSRData.cpp"/>
         <FILE id="kRkFjf" name="ADSRData.h" compile="0" resource="0" file="Source/Data/ADSRData.h"/>
         <FILE id="njOsQr" name="ReverbData.cpp" compile="1" resource="0" file="Source/Data/ReverbData.cpp"/>
         <FILE id="oGSRxK" name="ReverbData.h" compile="0" resource="0" file="Source/Data/ReverbData.h"/>
-        <FILE id="C9Kk8d" name="DelayData.cpp" compile="1" resource="0" file="Source/Data/DelayData.cpp"/>
-        <FILE id="CQehB6" name="DelayData.h" compile="0" resource="0" file="Source/Data/DelayData.h"/>
-        <FILE id="MzBDfe" name="DelayLine.cpp" compile="1" resource="0" file="Source/Data/DelayLine.cpp"/>
-        <FILE id="TOaGl3" name="DelayLine.h" compile="0" resource="0" file="Source/Data/DelayLine.h"/>
         <FILE id="I6JRmw" name="FilterData.cpp" compile="1" resource="0" file="Source/Data/FilterData.cpp"/>
         <FILE id="N1PoM1" name="FilterData.h" compile="0" resource="0" file="Source/Data/FilterData.h"/>
         <FILE id="UQ8odR" name="OscData.cpp" compile="1" resource="0" file="Source/Data/OscData.cpp"/>
@@ -26,6 +30,17 @@
               file="Source/Data/WaveshaperData.h"/>
       </GROUP>
       <GROUP id="{709A5827-001C-99FE-3BE4-184F5EB72C9E}" name="UI">
+        <FILE id="t8STvl" name="GainComponent.cpp" compile="1" resource="0"
+              file="Source/UI/GainComponent.cpp"/>
+        <FILE id="UkGIpf" name="GainComponent.h" compile="0" resource="0" file="Source/UI/GainComponent.h"/>
+        <FILE id="UfRK0x" name="CompressorComponent.cpp" compile="1" resource="0"
+              file="Source/UI/CompressorComponent.cpp"/>
+        <FILE id="olHHgZ" name="CompressorComponent.h" compile="0" resource="0"
+              file="Source/UI/CompressorComponent.h"/>
+        <FILE id="jqPFF8" name="ChorusComponent.cpp" compile="1" resource="0"
+              file="Source/UI/ChorusComponent.cpp"/>
+        <FILE id="Rt2hA8" name="ChorusComponent.h" compile="0" resource="0"
+              file="Source/UI/ChorusComponent.h"/>
         <FILE id="ujY80q" name="ADSRComponent.cpp" compile="1" resource="0"
               file="Source/UI/ADSRComponent.cpp"/>
         <FILE id="x2Uc6b" name="ADSRComponent.h" compile="0" resource="0" file="Source/UI/ADSRComponent.h"/>
@@ -33,10 +48,6 @@
               file="Source/UI/ReverbComponent.cpp"/>
         <FILE id="C0yK3G" name="ReverbComponent.h" compile="0" resource="0"
               file="Source/UI/ReverbComponent.h"/>
-        <FILE id="p09guH" name="DelayComponent.cpp" compile="1" resource="0"
-              file="Source/UI/DelayComponent.cpp"/>
-        <FILE id="h9Jb9q" name="DelayComponent.h" compile="0" resource="0"
-              file="Source/UI/DelayComponent.h"/>
         <FILE id="r0iaYt" name="DistortionComponent.cpp" compile="1" resource="0"
               file="Source/UI/DistortionComponent.cpp"/>
         <FILE id="FfoExj" name="DistortionComponent.h" compile="0" resource="0"

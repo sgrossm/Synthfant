@@ -17,16 +17,24 @@ PuzzleMirrorSynthAudioProcessorEditor::PuzzleMirrorSynthAudioProcessorEditor(Puz
     adsrComponent("Volume Envelope", audioProcessor.apvts, "ATTACK", "DECAY", "SUSTAIN", "RELEASE"),
     filter(audioProcessor.apvts, "FILTERTYPE", "FILTERCUTOFF", "FILTERRESONANCE"),
     filterADSR("Filter Envelope", audioProcessor.apvts, "FILTERATTACK", "FILTERDECAY", "FILTERSUSTAIN", "FILTERRELEASE"),
+    reverb(audioProcessor.apvts, "REVERBROOM", "REVERBDAMP", "REVERBWET", "REVERBDRY", "REVERBWIDTH", "REVERBFREEZE"),
+    phaser(audioProcessor.apvts, "PHASERRATE", "PHASERDEPTH", "PHASERCENTERFREQ", "PHASERFEEDBACK", "PHASERMIX"),
     distortion(audioProcessor.apvts, "DISTORTIONTYPE"),
-    reverb(audioProcessor.apvts, "REVERBROOM", "REVERBDAMP", "REVERBWET", "REVERBDRY", "REVERBWIDTH", "REVERBFREEZE")
+    chorus(audioProcessor.apvts, "CHORUSRATE", "CHORUSDEPTH", "CHORUSCENTERDELAY", "CHORUSFEEDBACK", "CHORUSMIX"),
+    comp(audioProcessor.apvts, "THRESHOLD", "RATIO", "COMPATTACK", "COMPRELEASE"),
+    gain(audioProcessor.apvts, "GAIN")
 {
-    setSize (620, 560);
+    setSize (1280, 660);
     addAndMakeVisible(osc);
     addAndMakeVisible(adsrComponent);
     addAndMakeVisible(filter);
     addAndMakeVisible(filterADSR);
-    addAndMakeVisible(distortion);
+    addAndMakeVisible(comp);
     addAndMakeVisible(reverb);
+    addAndMakeVisible(phaser);
+    addAndMakeVisible(distortion);
+    addAndMakeVisible(chorus);
+    addAndMakeVisible(gain);
 }
 
 PuzzleMirrorSynthAudioProcessorEditor::~PuzzleMirrorSynthAudioProcessorEditor()
@@ -50,7 +58,11 @@ void PuzzleMirrorSynthAudioProcessorEditor::resized()
     adsrComponent.setBounds(osc.getRight(), y, width, height);
     filter.setBounds(x, 240, width, height);
     filterADSR.setBounds(filter.getRight(), 240, width, height);
-    distortion.setBounds(x, 440, width - 150, height);
-    reverb.setBounds(distortion.getRight(), 440, width+400, height);
+    comp.setBounds(x, 440, width + 320, height);
+    reverb.setBounds(adsrComponent.getRight(), y, width + 400, height);
+    phaser.setBounds(filterADSR.getRight(), 240, width + 380, height);
+    distortion.setBounds(phaser.getRight() - 170, 240, width - 150, height);
+    chorus.setBounds(filterADSR.getRight()+10, 440, width + 380, height);
+    gain.setBounds(x + width + 160, 440, width - 180, height);
 }
 

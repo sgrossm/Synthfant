@@ -53,12 +53,9 @@ void SynthVoice::prepareToPlay(double sampleRate, int samplesPerBlock, int outpu
     osc.prepareToPlay(spec);
     filterADSR.setSampleRate(sampleRate);
     filter.prepareToPlay(sampleRate, samplesPerBlock, outputChannels);
-    adsr.setSampleRate(sampleRate);
-    
+    adsr.setSampleRate(sampleRate);    
     distortion.prepare(spec);    
-
     gain.prepare(spec);
-    gain.setGainDecibels(-6.0f);
     isPrepared = true;
 }
 
@@ -79,8 +76,7 @@ void SynthVoice::renderNextBlock(juce::AudioBuffer<float>& outputBuffer, int sta
     filter.process(synthBuffer);
     filterADSR.applyEnvelopeToBuffer(synthBuffer, 0, synthBuffer.getNumSamples());
     distortion.process(synthBuffer);
-
-    gain.process(juce::dsp::ProcessContextReplacing<float>(audioBlock));
+    gain.process(synthBuffer);
     
 
     for (int channels = 0; channels < outputBuffer.getNumChannels(); ++channels)

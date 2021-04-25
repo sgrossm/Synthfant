@@ -12,6 +12,10 @@
 #include <SynthSound.h>
 #include <SynthVoice.h>
 #include "Data/AdsrData.h"
+#include "Data/ReverbData.h"
+#include "Data/PhaserData.h"
+#include "Data/ChorusData.h"
+#include "Data/CompressorData.h"
 
 //==============================================================================
 /**
@@ -62,6 +66,9 @@ private:
     juce::Synthesiser synth;
     juce::AudioProcessorValueTreeState::ParameterLayout createParams();
     ReverbData reverb;
+    PhaserData phaser;
+    ChorusData chorus;
+    CompressorData comp;
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PuzzleMirrorSynthAudioProcessor)
 };

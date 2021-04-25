@@ -1,32 +1,32 @@
 /*
   ==============================================================================
 
-    PhaserComponent.cpp
-    Created: 21 Apr 2021 3:18:19pm
+    ChorusComponent.cpp
+    Created: 24 Apr 2021 3:24:53pm
     Author:  lazlo
 
   ==============================================================================
 */
 
 #include <JuceHeader.h>
-#include "PhaserComponent.h"
+#include "ChorusComponent.h"
 
 //==============================================================================
-PhaserComponent::PhaserComponent(juce::AudioProcessorValueTreeState& apvts, juce::String rateID,
-    juce::String depthID, juce::String centerFreqID, juce::String fdbkID, juce::String mixID)
+ChorusComponent::ChorusComponent(juce::AudioProcessorValueTreeState& apvts, juce::String rateID,
+    juce::String depthID, juce::String centerDelayID, juce::String fdbkID, juce::String mixID)
 {
     setSliderWithLabel(rateSlider, rateLabel, apvts, rateID, rateSliderAttachment);
     setSliderWithLabel(depthSlider, depthLabel, apvts, depthID, depthSliderAttachment);
-    setSliderWithLabel(centerFreqSlider, centerFreqLabel, apvts, centerFreqID, centerFreqSliderAttachment);
+    setSliderWithLabel(centerDelaySlider, centerDelayLabel, apvts, centerDelayID, centerDelaySliderAttachment);
     setSliderWithLabel(fdbkSlider, fdbkLabel, apvts, fdbkID, fdbkSliderAttachment);
     setSliderWithLabel(mixSlider, mixLabel, apvts, mixID, mixSliderAttachment);
 }
 
-PhaserComponent::~PhaserComponent()
+ChorusComponent::~ChorusComponent()
 {
 }
 
-void PhaserComponent::paint (juce::Graphics& g)
+void ChorusComponent::paint (juce::Graphics& g)
 {
     auto bounds = getLocalBounds().reduced(5);
     auto labelSpace = bounds.removeFromTop(25.0f);
@@ -34,12 +34,12 @@ void PhaserComponent::paint (juce::Graphics& g)
     g.fillAll(juce::Colours::black);
     g.setColour(juce::Colours::white);
     g.setFont(20.0f);
-    g.drawText("Phaser", labelSpace.withX(5), juce::Justification::left);
+    g.drawText("Chorus", labelSpace.withX(5), juce::Justification::left);
     g.drawRoundedRectangle(bounds.getX(), bounds.getY(), bounds.getWidth() - 180,
         bounds.getHeight(), 5.0f, 2.0f);
 }
 
-void PhaserComponent::resized()
+void ChorusComponent::resized()
 {
     const auto startYPos = 55;
     const auto sliderWidth = 100;
@@ -53,10 +53,10 @@ void PhaserComponent::resized()
     depthSlider.setBounds(rateSlider.getRight(), startYPos, sliderWidth, sliderHeight);
     depthLabel.setBounds(depthSlider.getX(), depthSlider.getY() - labelYOffset,
         depthSlider.getWidth(), labelHeight);
-    centerFreqSlider.setBounds(depthSlider.getRight(), startYPos, sliderWidth, sliderHeight);
-    centerFreqLabel.setBounds(centerFreqSlider.getX(), centerFreqSlider.getY() - labelYOffset,
-        centerFreqSlider.getWidth(), labelHeight);
-    fdbkSlider.setBounds(centerFreqSlider.getRight(), startYPos, sliderWidth, sliderHeight);
+    centerDelaySlider.setBounds(depthSlider.getRight(), startYPos, sliderWidth, sliderHeight);
+    centerDelayLabel.setBounds(centerDelaySlider.getX(), centerDelaySlider.getY() - labelYOffset,
+        centerDelaySlider.getWidth(), labelHeight);
+    fdbkSlider.setBounds(centerDelaySlider.getRight(), startYPos, sliderWidth, sliderHeight);
     fdbkLabel.setBounds(fdbkSlider.getX(), fdbkSlider.getY() - labelYOffset,
         fdbkSlider.getWidth(), labelHeight);
     mixSlider.setBounds(fdbkSlider.getRight(), startYPos, sliderWidth, sliderHeight);
@@ -64,8 +64,9 @@ void PhaserComponent::resized()
         mixSlider.getWidth(), labelHeight);
 }
 
+
 using Attachment = juce::AudioProcessorValueTreeState::SliderAttachment;
-void PhaserComponent::setSliderWithLabel(juce::Slider& slider, juce::Label& label, juce::AudioProcessorValueTreeState& apvts,
+void ChorusComponent::setSliderWithLabel(juce::Slider& slider, juce::Label& label, juce::AudioProcessorValueTreeState& apvts,
     juce::String parameterID, std::unique_ptr<Attachment>& sliderAttachment)
 {
     slider.setSliderStyle(juce::Slider::RotaryHorizontalVerticalDrag);

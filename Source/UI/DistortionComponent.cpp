@@ -14,7 +14,7 @@
 //==============================================================================
 DistortionComponent::DistortionComponent(juce::AudioProcessorValueTreeState& apvts, juce::String distortionID)
 {
-    juce::StringArray waveChoices = { "None", "Velvet", "Cheesebread", "Sandy Toes" };
+    juce::StringArray waveChoices = { "None", "Velvet", "Cheesebread", "Sandhead" };
     distortionType.addItemList(waveChoices, 1);
     addAndMakeVisible(distortionType);
 
@@ -42,7 +42,7 @@ void DistortionComponent::paint (juce::Graphics& g)
     g.setFont(20.0f);
     g.drawText("Waveshaper", labelSpace.withX(5), juce::Justification::left);
     g.drawRoundedRectangle(bounds.getX(), bounds.getY(),
-        bounds.getWidth() - 20, bounds.getHeight() - 90, 5.0f, 2.0f);
+        bounds.getWidth() - 20, bounds.getHeight(), 5.0f, 2.0f);
 }
 
 void DistortionComponent::resized()

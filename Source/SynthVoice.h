@@ -16,6 +16,7 @@
 #include "Data/FilterData.h"
 #include "Data/WaveshaperData.h"
 #include "Data/ReverbData.h"
+#include "Data/GainData.h"
 
 class SynthVoice : public juce::SynthesiserVoice
 {
@@ -34,6 +35,7 @@ public:
     ADSRData& getADSR() { return adsr; }
     FilterData& getFilter() { return filter; }
     ADSRData& getFilterADSR() { return filterADSR;  }
+    GainData& getGain() { return gain; }
 
 private:
     juce::AudioBuffer<float> synthBuffer;
@@ -42,6 +44,6 @@ private:
     ADSRData filterADSR;
     FilterData filter;
     WaveshaperData distortion;
-    juce::dsp::Gain<float> gain;
+    GainData gain;
     bool isPrepared{ false };
 };

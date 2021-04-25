@@ -37,7 +37,8 @@ void ReverbComponent::paint (juce::Graphics& g)
     g.setColour(juce::Colours::white);
     g.setFont(20.0f);
     g.drawText("Reverb", labelSpace.withX(5), juce::Justification::left);
-    //g.drawRoundedRectangle(bounds.toFloat(), 5.0f, 2.0f);
+    g.drawRoundedRectangle(bounds.getX(), bounds.getY(), bounds.getWidth() - 60, 
+        bounds.getHeight(), 5.0f, 2.0f);
 }
 
 void ReverbComponent::resized()
@@ -48,7 +49,7 @@ void ReverbComponent::resized()
     const auto labelYOffset = 20;
     const auto labelHeight = 20;
 
-    roomSizeSlider.setBounds(10, startYPos + 5, sliderWidth, sliderHeight);
+    roomSizeSlider.setBounds(10, startYPos, sliderWidth, sliderHeight);
     roomSizeLabel.setBounds(roomSizeSlider.getX(), roomSizeSlider.getY() - labelYOffset,
         roomSizeSlider.getWidth(), labelHeight);
     dampingSlider.setBounds(roomSizeSlider.getRight(), startYPos, sliderWidth, sliderHeight);

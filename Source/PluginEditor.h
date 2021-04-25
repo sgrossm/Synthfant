@@ -15,6 +15,10 @@
 #include "UI/FilterComponent.h"
 #include "UI/DistortionComponent.h"
 #include "UI/ReverbComponent.h"
+#include "UI/PhaserComponent.h"
+#include "UI/ChorusComponent.h"
+#include "UI/CompressorComponent.h"
+#include "UI/GainComponent.h"
 
 //==============================================================================
 /**
@@ -35,8 +39,11 @@ private:
     ADSRComponent adsrComponent;
     FilterComponent filter;
     ADSRComponent filterADSR;
-    DistortionComponent distortion;
     ReverbComponent reverb;
-
+    PhaserComponent phaser;
+    DistortionComponent distortion;
+    ChorusComponent chorus;
+    CompressorComponent comp;
+    GainComponent gain;
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PuzzleMirrorSynthAudioProcessorEditor)
 };

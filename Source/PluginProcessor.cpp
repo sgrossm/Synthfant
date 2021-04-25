@@ -103,6 +103,9 @@ void PuzzleMirrorSynthAudioProcessor::prepareToPlay (double sampleRate, int samp
     spec.sampleRate = sampleRate;
     spec.numChannels = getTotalNumOutputChannels();
     reverb.prepare(spec);
+    phaser.prepare(spec);
+    chorus.prepare(spec);
+    comp.prepare(spec);
 
     for (int i = 0; i < synth.getNumVoices(); ++i)
     {
@@ -185,13 +188,16 @@ void PuzzleMirrorSynthAudioProcessor::processBlock (juce::AudioBuffer<float>& bu
             // Distortion
             auto& distortionType = *apvts.getRawParameterValue("DISTORTIONTYPE");
             
+            // Gain
+            auto& gainVal = *apvts.getRawParameterValue("GAIN");
+
             voice->getOscillator().setOscillatorWaveform(waveformChoice);            
             voice->getOscillator().setFMParameters(fmFrequency, fmDepth);
             voice->getADSR().updateADSR(attack.load(), decay.load(), sustain.load(), release.load());
             voice->updateFilter(filterType, filterCutoff, filterResonance);
             voice->getFilterADSR().updateADSR(filterAttack.load(), filterDecay.load(), filterSustain.load(), filterRelease.load());
             voice->updateDistortion(distortionType);
-           
+            voice->getGain().setGainLevel(gainVal);
         }
     }
 
@@ -206,7 +212,34 @@ void PuzzleMirrorSynthAudioProcessor::processBlock (juce::AudioBuffer<float>& bu
     auto& reverbWidth = *apvts.getRawParameterValue("REVERBWIDTH");
     auto& reverbFreeze = *apvts.getRawParameterValue("REVERBFREEZE");
     reverb.updateReverb(reverbSize, reverbDamp, reverbWet, reverbDry, reverbWidth, reverbFreeze);
+    
+    // Phaser 
+    phaser.process(buffer);
+    auto& phaserRate = *apvts.getRawParameterValue("PHASERRATE");
+    auto& phaserDepth = *apvts.getRawParameterValue("PHASERDEPTH");
+    auto& phaserCenterFreq = *apvts.getRawParameterValue("PHASERCENTERFREQ");
+    auto& phaserFeedback = *apvts.getRawParameterValue("PHASERFEEDBACK");
+    auto& phaserMix = *apvts.getRawParameterValue("PHASERMIX");
+    phaser.setPhaserParameters(phaserRate, phaserDepth, phaserCenterFreq,
+        phaserFeedback, phaserMix);
 
+    //Chorus 
+    chorus.process(buffer);
+    auto& chorusRate = *apvts.getRawParameterValue("CHORUSRATE");
+    auto& chorusDepth = *apvts.getRawParameterValue("CHORUSDEPTH");
+    auto& chorusCenter = *apvts.getRawParameterValue("CHORUSCENTERDELAY");
+    auto& chorusFeedback = *apvts.getRawParameterValue("CHORUSFEEDBACK");
+    auto& chorusMix = *apvts.getRawParameterValue("CHORUSMIX");
+    chorus.setChorusParameters(chorusRate, chorusDepth, chorusCenter,
+        chorusFeedback, chorusMix);
+
+    // Compressor
+    comp.process(buffer);
+    auto& threshold = *apvts.getRawParameterValue("THRESHOLD");
+    auto& ratio = *apvts.getRawParameterValue("RATIO");
+    auto& attack = *apvts.getRawParameterValue("COMPATTACK");
+    auto& release = *apvts.getRawParameterValue("COMPRELEASE");
+    comp.setCompressorParameters(threshold, ratio, attack, release);
 }
 
 //==============================================================================
@@ -276,7 +309,7 @@ juce::AudioProcessorValueTreeState::ParameterLayout PuzzleMirrorSynthAudioProces
         juce::StringArray{ "lowpass", "bandpass", "highpass" }, 0));
 
     params.push_back(std::make_unique<juce::AudioParameterFloat>("FILTERCUTOFF", "Filter Cutoff",
-        juce::NormalisableRange<float>{20.0f, 20000.0f, 0.01f, 0.6f }, 200.0f));
+        juce::NormalisableRange<float>{20.0f, 20000.0f, 0.01f, 0.6f }, 20000.0f));
 
     params.push_back(std::make_unique<juce::AudioParameterFloat>("FILTERRESONANCE", "Filter Resonance",
         juce::NormalisableRange<float>{1.0f, 10.0f, 0.01f }, 1.0f));
@@ -299,19 +332,57 @@ juce::AudioProcessorValueTreeState::ParameterLayout PuzzleMirrorSynthAudioProces
     params.push_back(std::make_unique<juce::AudioParameterChoice>("DISTORTIONTYPE", "Distortion Type",
         juce::StringArray{ "None", "Velvet", "Cheesebread", "Sandy Toes" }, 0));
 
-    //// Reverb
+    // Reverb
     params.push_back(std::make_unique<juce::AudioParameterFloat>("REVERBROOM", "Reverb Room",
         juce::NormalisableRange<float>{0.0f, 1.0f, 0.1f }, 0.0f));
     params.push_back(std::make_unique<juce::AudioParameterFloat>("REVERBDAMP", "Reverb Damp",
         juce::NormalisableRange<float>{0.0f, 1.0f, 0.1f }, 0.0f));
     params.push_back(std::make_unique<juce::AudioParameterFloat>("REVERBWET", "Reverb Wet",
         juce::NormalisableRange<float>{0.0f, 1.0f, 0.1f }, 0.0f));
-    params.push_back(std::make_unique<juce::AudioParameterFloat>("REVERBDRY", "Reverb Dy",
+    params.push_back(std::make_unique<juce::AudioParameterFloat>("REVERBDRY", "Reverb Dry",
         juce::NormalisableRange<float>{0.0f, 1.0f, 0.1f }, 1.0f));
     params.push_back(std::make_unique<juce::AudioParameterFloat>("REVERBWIDTH", "Reverb Width",
         juce::NormalisableRange<float>{0.0f, 1.0f, 0.1f }, 0.0f));
     params.push_back(std::make_unique<juce::AudioParameterFloat>("REVERBFREEZE", "Reverb Freeze",
         juce::NormalisableRange<float>{0.0f, 1.0f, 0.1f }, 0.0f));
+
+    // Phaser
+    params.push_back(std::make_unique<juce::AudioParameterFloat>("PHASERRATE", "Phaser Rate",
+        juce::NormalisableRange<float>{0.0f, 50.0f, 0.01f, 0.1f }, 1.0f));
+    params.push_back(std::make_unique<juce::AudioParameterFloat>("PHASERDEPTH", "Phaser Depth",
+        juce::NormalisableRange<float>{0.0f, 1.0f, 0.1f }, 0.0f));
+    params.push_back(std::make_unique<juce::AudioParameterFloat>("PHASERCENTERFREQ", "Phaser Center Frequency",
+        juce::NormalisableRange<float>{20.0f, 20000.0f, 0.1f, 0.6f }, 500.0f));
+    params.push_back(std::make_unique<juce::AudioParameterFloat>("PHASERFEEDBACK", "Phaser Feedback",
+        juce::NormalisableRange<float>{-1.0f, 1.0f, 0.1f }, 0.0f));
+    params.push_back(std::make_unique<juce::AudioParameterFloat>("PHASERMIX", "Phaser Mix",
+        juce::NormalisableRange<float>{0.0f, 1.0f, 0.1f }, 0.0f));
+
+    // Chorus
+    params.push_back(std::make_unique<juce::AudioParameterFloat>("CHORUSRATE", "Chorus Rate",
+        juce::NormalisableRange<float>{0.0f, 100.0f, 0.01f, 0.1f }, 1.0f));
+    params.push_back(std::make_unique<juce::AudioParameterFloat>("CHORUSDEPTH", "Chorus Depth",
+        juce::NormalisableRange<float>{0.0f, 1.0f, 0.1f }, 0.0f));
+    params.push_back(std::make_unique<juce::AudioParameterFloat>("CHORUSCENTERDELAY", "Chorus Center Delay",
+        juce::NormalisableRange<float>{1.0f, 100.0f, 0.1f}, 0.0f));
+    params.push_back(std::make_unique<juce::AudioParameterFloat>("CHORUSFEEDBACK", "Chorus Feedback",
+        juce::NormalisableRange<float>{-1.0f, 1.0f, 0.1f }, 0.0f));
+    params.push_back(std::make_unique<juce::AudioParameterFloat>("CHORUSMIX", "Chorus Mix",
+        juce::NormalisableRange<float>{0.0f, 1.0f, 0.1f }, 0.0f));
+
+    // Compressor
+    params.push_back(std::make_unique<juce::AudioParameterFloat>("THRESHOLD", "Threshold",
+        juce::NormalisableRange<float>{-32.0f, 0.0f, 0.1f }, 0.0f));
+    params.push_back(std::make_unique<juce::AudioParameterFloat>("RATIO", "Ratio",
+        juce::NormalisableRange<float>{1.0f, 4.0f, 0.1f}, 1.0f));
+    params.push_back(std::make_unique<juce::AudioParameterFloat>("COMPATTACK", "Comp Attack",
+        juce::NormalisableRange<float>{0.0f, 1200.0f, 0.1f }, 20.0f));
+    params.push_back(std::make_unique<juce::AudioParameterFloat>("COMPRELEASE", "Comp Release",
+        juce::NormalisableRange<float>{0.01f, 170.0f, 0.1f }, 70.0f));
+
+    // Gain
+    params.push_back(std::make_unique<juce::AudioParameterFloat>("GAIN", "Gain", 
+        juce::NormalisableRange<float>{-64.0f, -6.0f, 0.1f}, -12.0f));
 
     return { params.begin(), params.end() };
 }

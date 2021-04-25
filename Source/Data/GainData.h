@@ -1,27 +1,24 @@
 /*
   ==============================================================================
 
-    PhaserData.h
-    Created: 21 Apr 2021 3:17:53pm
+    GainData.h
+    Created: 24 Apr 2021 4:47:13pm
     Author:  lazlo
 
   ==============================================================================
 */
 
 #pragma once
-
 #include <JuceHeader.h>
 
-class PhaserData
+class GainData
 {
 public:
     void prepare(const juce::dsp::ProcessSpec& spec);
-    void setPhaserParameters(const float rate, const float depth, const float centerFreq,
-        const float fdbk, const float mix);
+    void setGainLevel(const float newGain);
     void process(juce::AudioBuffer<float>& buffer);
     void reset();
-
 private:
-    juce::dsp::Phaser<float> phaser; 
-    bool isPrepared { false };
+    juce::dsp::Gain<float> gain;
+    bool isPrepared{ false };
 };
