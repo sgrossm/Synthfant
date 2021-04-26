@@ -28,7 +28,7 @@ void SynthVoice::stopNote(float velocity, bool allowTailOff)
     filterADSR.noteOff();
     if (!allowTailOff || !adsr.isActive())
         clearCurrentNote();
-    
+    std::cout << "Note Off" << std::endl;
 }
 
 void SynthVoice::pitchWheelMoved(int newPitchWheelValue)

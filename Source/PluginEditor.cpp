@@ -9,6 +9,7 @@
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
 
+
 //==============================================================================
 PuzzleMirrorSynthAudioProcessorEditor::PuzzleMirrorSynthAudioProcessorEditor(PuzzleMirrorSynthAudioProcessor& p)
     : AudioProcessorEditor(&p),
@@ -24,6 +25,8 @@ PuzzleMirrorSynthAudioProcessorEditor::PuzzleMirrorSynthAudioProcessorEditor(Puz
     comp(audioProcessor.apvts, "THRESHOLD", "RATIO", "COMPATTACK", "COMPRELEASE"),
     gain(audioProcessor.apvts, "GAIN")
 {
+    
+    setLookAndFeel(&customLook);
     setSize (1280, 660);
     addAndMakeVisible(osc);
     addAndMakeVisible(adsrComponent);
@@ -35,16 +38,21 @@ PuzzleMirrorSynthAudioProcessorEditor::PuzzleMirrorSynthAudioProcessorEditor(Puz
     addAndMakeVisible(distortion);
     addAndMakeVisible(chorus);
     addAndMakeVisible(gain);
+    
+    logo = juce::ImageCache::getFromMemory(BinaryData::baby_png, BinaryData::baby_pngSize);
+    logoComponent.setImage(logo);
+    addAndMakeVisible(logoComponent);
 }
 
 PuzzleMirrorSynthAudioProcessorEditor::~PuzzleMirrorSynthAudioProcessorEditor()
 {
+    setLookAndFeel(nullptr);
 }
 
 //==============================================================================
 void PuzzleMirrorSynthAudioProcessorEditor::paint (juce::Graphics& g)
 {
-    g.fillAll(juce::Colours::black);
+    g.fillAll(juce::Colours::antiquewhite);
 }
 
 void PuzzleMirrorSynthAudioProcessorEditor::resized()
@@ -62,7 +70,8 @@ void PuzzleMirrorSynthAudioProcessorEditor::resized()
     reverb.setBounds(adsrComponent.getRight(), y, width + 400, height);
     phaser.setBounds(filterADSR.getRight(), 240, width + 380, height);
     distortion.setBounds(phaser.getRight() - 170, 240, width - 150, height);
-    chorus.setBounds(filterADSR.getRight()+10, 440, width + 380, height);
+    chorus.setBounds(filterADSR.getRight(), 440, width + 380, height);
     gain.setBounds(x + width + 160, 440, width - 180, height);
+    logoComponent.setBounds(chorus.getRight() - 200, 440, 200, 200);
 }
 

@@ -19,6 +19,7 @@
 #include "UI/ChorusComponent.h"
 #include "UI/CompressorComponent.h"
 #include "UI/GainComponent.h"
+#include "UI/CustomLookAndFeel.h"
 
 //==============================================================================
 /**
@@ -28,12 +29,12 @@ class PuzzleMirrorSynthAudioProcessorEditor  : public juce::AudioProcessorEditor
 public:
     PuzzleMirrorSynthAudioProcessorEditor (PuzzleMirrorSynthAudioProcessor&);
     ~PuzzleMirrorSynthAudioProcessorEditor() override;
-
     //==============================================================================
     void paint (juce::Graphics&) override;
     void resized() override;
-
+    std::vector<juce::Image> imageList;
 private:
+    CustomLookAndFeel customLook;
     PuzzleMirrorSynthAudioProcessor& audioProcessor;
     OscComponent osc;
     ADSRComponent adsrComponent;
@@ -45,5 +46,9 @@ private:
     ChorusComponent chorus;
     CompressorComponent comp;
     GainComponent gain;
+
+    juce::ImageComponent logoComponent;
+    juce::Image logo;
+    
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PuzzleMirrorSynthAudioProcessorEditor)
 };

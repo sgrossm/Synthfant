@@ -12,7 +12,8 @@
 #include "OscComponent.h"
 
 //==============================================================================
-OscComponent::OscComponent(juce::AudioProcessorValueTreeState& apvts, juce::String waveID, juce::String fmFreqID, juce::String fmDepthID)
+OscComponent::OscComponent(juce::AudioProcessorValueTreeState& apvts, juce::String waveID, juce::String fmFreqID, 
+    juce::String fmDepthID)
 {
     juce::StringArray waveChoices = { "Sine", "Saw", "Square", "White Noise" };
     waveformSelector.addItemList(waveChoices, 1);
@@ -20,7 +21,7 @@ OscComponent::OscComponent(juce::AudioProcessorValueTreeState& apvts, juce::Stri
 
     oscWaveSelectorAttachment = std::make_unique<juce::AudioProcessorValueTreeState::ComboBoxAttachment>(apvts, waveID, waveformSelector);
 
-    waveformLabel.setColour(juce::Label::ColourIds::textColourId, juce::Colours::white);
+    waveformLabel.setColour(juce::Label::ColourIds::textColourId, juce::Colours::black);
     waveformLabel.setFont(15.0f);
     waveformLabel.setJustificationType(juce::Justification::left);
     addAndMakeVisible(waveformLabel);
@@ -38,11 +39,12 @@ void OscComponent::paint (juce::Graphics& g)
     auto bounds = getLocalBounds().reduced(5);
     auto labelSpace = bounds.removeFromTop(25.0f);
 
-    g.fillAll(juce::Colours::black);
-    g.setColour(juce::Colours::white);
+    g.setColour(juce::Colours::black);
     g.setFont(20.0f);
     g.drawText("Oscillator", labelSpace.withX(5), juce::Justification::left);
-    g.drawRoundedRectangle(bounds.toFloat(), 5.0f, 2.0f);
+    g.drawRoundedRectangle(bounds.toFloat(), 5.0f, 5.0f);
+    g.setColour(juce::Colours::lightblue);
+    g.fillRoundedRectangle(bounds.toFloat(), 5.0f);
 }
 
 void OscComponent::resized()
@@ -70,12 +72,14 @@ void OscComponent::setSliderWithLabel(juce::Slider& slider, juce::Label& label, 
     juce::String parameterID, std::unique_ptr<Attachment>& sliderAttachment)
 {
     slider.setSliderStyle(juce::Slider::RotaryHorizontalVerticalDrag);
+    
+    slider.setColour(juce::Slider::ColourIds::textBoxTextColourId, juce::Colours::black);
     slider.setTextBoxStyle(juce::Slider::TextBoxBelow, true, 50, 25);
     addAndMakeVisible(slider);
 
     sliderAttachment = std::make_unique<juce::AudioProcessorValueTreeState::SliderAttachment>(apvts, parameterID, slider);
 
-    label.setColour(juce::Label::ColourIds::textColourId, juce::Colours::white);
+    label.setColour(juce::Label::ColourIds::textColourId, juce::Colours::black);
     label.setFont(15.0f);
     label.setJustificationType(juce::Justification::centred);
     addAndMakeVisible(label);

@@ -2,7 +2,7 @@
 
 <JUCERPROJECT id="mpP1r6" name="Synthfant" projectType="audioplug" useAppConfig="0"
               addUsingNamespaceToJuceHeader="0" displaySplashScreen="1" jucerFormatVersion="1"
-              pluginCharacteristicsValue="pluginIsSynth,pluginWantsMidiIn">
+              pluginCharacteristicsValue="pluginIsSynth,pluginProducesMidiOut,pluginWantsMidiIn">
   <MAINGROUP id="roJTac" name="Synthfant">
     <GROUP id="{E36BD4BA-B4BC-37F5-EB01-52F8DDA18294}" name="Source">
       <GROUP id="{57F828D7-F793-2F47-6A87-3D14FE1ED2F1}" name="Data">
@@ -30,6 +30,8 @@
               file="Source/Data/WaveshaperData.h"/>
       </GROUP>
       <GROUP id="{709A5827-001C-99FE-3BE4-184F5EB72C9E}" name="UI">
+        <FILE id="PLaDaQ" name="CustomLookAndFeel.h" compile="0" resource="0"
+              file="Source/UI/CustomLookAndFeel.h"/>
         <FILE id="t8STvl" name="GainComponent.cpp" compile="1" resource="0"
               file="Source/UI/GainComponent.cpp"/>
         <FILE id="UkGIpf" name="GainComponent.h" compile="0" resource="0" file="Source/UI/GainComponent.h"/>
@@ -75,6 +77,9 @@
       <FILE id="G9ZlPw" name="SynthVoice.h" compile="0" resource="0" file="Source/SynthVoice.h"/>
       <FILE id="TlCyrJ" name="SynthSound.h" compile="0" resource="0" file="Source/SynthSound.h"/>
     </GROUP>
+    <GROUP id="{34FAA7AB-7099-1A40-9592-C55A00409DCA}" name="Resources">
+      <FILE id="JStFKJ" name="baby.png" compile="0" resource="1" file="Resources/baby.png"/>
+    </GROUP>
   </MAINGROUP>
   <JUCEOPTIONS JUCE_STRICT_REFCOUNTEDPOINTER="1" JUCE_VST3_CAN_REPLACE_VST2="0"/>
   <EXPORTFORMATS>
@@ -97,6 +102,7 @@
         <MODULEPATH id="juce_gui_basics" path="../../../juce-6.0.8-windows/JUCE/modules"/>
         <MODULEPATH id="juce_gui_extra" path="../../../juce-6.0.8-windows/JUCE/modules"/>
         <MODULEPATH id="juce_dsp" path="../../../juce-6.0.8-windows/JUCE/modules"/>
+        <MODULEPATH id="juce_video" path="../../../juce-6.0.8-windows/JUCE/modules"/>
       </MODULEPATHS>
     </VS2019>
   </EXPORTFORMATS>
@@ -115,6 +121,7 @@
     <MODULE id="juce_graphics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
     <MODULE id="juce_gui_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
     <MODULE id="juce_gui_extra" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_video" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
   </MODULES>
   <LIVE_SETTINGS>
     <WINDOWS/>

@@ -20,7 +20,7 @@ DistortionComponent::DistortionComponent(juce::AudioProcessorValueTreeState& apv
 
     distortionTypeAttachment = std::make_unique<juce::AudioProcessorValueTreeState::ComboBoxAttachment>(apvts, distortionID, distortionType);
 
-    distortionLabel.setColour(juce::Label::ColourIds::textColourId, juce::Colours::white);
+    distortionLabel.setColour(juce::Label::ColourIds::textColourId, juce::Colours::black);
     distortionLabel.setFont(15.0f);
     distortionLabel.setJustificationType(juce::Justification::left);
     addAndMakeVisible(distortionLabel);
@@ -37,12 +37,14 @@ void DistortionComponent::paint (juce::Graphics& g)
     
     auto labelSpace = bounds.removeFromTop(25.0f);
 
-    g.fillAll(juce::Colours::black);
-    g.setColour(juce::Colours::white);
+    g.setColour(juce::Colours::black);
     g.setFont(20.0f);
     g.drawText("Waveshaper", labelSpace.withX(5), juce::Justification::left);
     g.drawRoundedRectangle(bounds.getX(), bounds.getY(),
-        bounds.getWidth() - 20, bounds.getHeight(), 5.0f, 2.0f);
+        bounds.getWidth() - 20, bounds.getHeight(), 5.0f, 5.0f);
+    g.setColour(juce::Colours::lightblue);
+    g.fillRoundedRectangle(bounds.getX(), bounds.getY(), bounds.getWidth() - 20,
+        bounds.getHeight(), 5.0f);
 }
 
 void DistortionComponent::resized()

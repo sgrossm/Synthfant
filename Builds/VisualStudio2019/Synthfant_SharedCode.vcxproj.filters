@@ -10,6 +10,9 @@
     <Filter Include="Synthfant\Source">
       <UniqueIdentifier>{6685C6DE-9FDC-E592-2E67-D0596177EE82}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Synthfant\Resources">
+      <UniqueIdentifier>{8CEC6485-4E49-058A-9185-E37EE40BE4BB}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Synthfant">
       <UniqueIdentifier>{3AE24C32-7D7F-6D16-2EFD-2900CF830AC8}</UniqueIdentifier>
     </Filter>
@@ -450,6 +453,18 @@
     </Filter>
     <Filter Include="JUCE Modules\juce_gui_extra">
       <UniqueIdentifier>{A4D76113-9EDC-DA60-D89B-5BACF7F1C426}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="JUCE Modules\juce_video\capture">
+      <UniqueIdentifier>{CB8DF3B2-0409-6D59-C5D4-A034EBB7F973}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="JUCE Modules\juce_video\native">
+      <UniqueIdentifier>{7774F72F-C951-B8AB-E927-E34AD23C52C8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="JUCE Modules\juce_video\playback">
+      <UniqueIdentifier>{658BADF8-7095-C722-F9EC-9F36E8818187}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="JUCE Modules\juce_video">
+      <UniqueIdentifier>{2C58F450-CD01-0231-2F16-0D4D68565164}</UniqueIdentifier>
     </Filter>
     <Filter Include="JUCE Modules">
       <UniqueIdentifier>{FE955B6B-68AC-AA07-70D8-2413F6DB65C8}</UniqueIdentifier>
@@ -2529,6 +2544,18 @@
     <ClCompile Include="..\..\..\..\..\juce-6.0.8-windows\JUCE\modules\juce_gui_extra\juce_gui_extra.cpp">
       <Filter>JUCE Modules\juce_gui_extra</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\..\juce-6.0.8-windows\JUCE\modules\juce_video\capture\juce_CameraDevice.cpp">
+      <Filter>JUCE Modules\juce_video\capture</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\juce-6.0.8-windows\JUCE\modules\juce_video\playback\juce_VideoComponent.cpp">
+      <Filter>JUCE Modules\juce_video\playback</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\juce-6.0.8-windows\JUCE\modules\juce_video\juce_video.cpp">
+      <Filter>JUCE Modules\juce_video</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\JuceLibraryCode\BinaryData.cpp">
+      <Filter>JUCE Library Code</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\JuceLibraryCode\include_juce_audio_basics.cpp">
       <Filter>JUCE Library Code</Filter>
     </ClCompile>
@@ -2568,6 +2595,9 @@
     <ClCompile Include="..\..\JuceLibraryCode\include_juce_gui_extra.cpp">
       <Filter>JUCE Library Code</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\JuceLibraryCode\include_juce_video.cpp">
+      <Filter>JUCE Library Code</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Source\Data\GainData.h">
@@ -2596,6 +2626,9 @@
     </ClInclude>
     <ClInclude Include="..\..\Source\Data\WaveshaperData.h">
       <Filter>Synthfant\Source\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\UI\CustomLookAndFeel.h">
+      <Filter>Synthfant\Source\UI</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\UI\GainComponent.h">
       <Filter>Synthfant\Source\UI</Filter>
@@ -5030,6 +5063,39 @@
     <ClInclude Include="..\..\..\..\..\juce-6.0.8-windows\JUCE\modules\juce_gui_extra\juce_gui_extra.h">
       <Filter>JUCE Modules\juce_gui_extra</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\..\juce-6.0.8-windows\JUCE\modules\juce_video\capture\juce_CameraDevice.h">
+      <Filter>JUCE Modules\juce_video\capture</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\juce-6.0.8-windows\JUCE\modules\juce_video\native\juce_android_CameraDevice.h">
+      <Filter>JUCE Modules\juce_video\native</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\juce-6.0.8-windows\JUCE\modules\juce_video\native\juce_android_Video.h">
+      <Filter>JUCE Modules\juce_video\native</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\juce-6.0.8-windows\JUCE\modules\juce_video\native\juce_ios_CameraDevice.h">
+      <Filter>JUCE Modules\juce_video\native</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\juce-6.0.8-windows\JUCE\modules\juce_video\native\juce_mac_CameraDevice.h">
+      <Filter>JUCE Modules\juce_video\native</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\juce-6.0.8-windows\JUCE\modules\juce_video\native\juce_mac_Video.h">
+      <Filter>JUCE Modules\juce_video\native</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\juce-6.0.8-windows\JUCE\modules\juce_video\native\juce_win32_CameraDevice.h">
+      <Filter>JUCE Modules\juce_video\native</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\juce-6.0.8-windows\JUCE\modules\juce_video\native\juce_win32_Video.h">
+      <Filter>JUCE Modules\juce_video\native</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\juce-6.0.8-windows\JUCE\modules\juce_video\playback\juce_VideoComponent.h">
+      <Filter>JUCE Modules\juce_video\playback</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\juce-6.0.8-windows\JUCE\modules\juce_video\juce_video.h">
+      <Filter>JUCE Modules\juce_video</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\JuceLibraryCode\BinaryData.h">
+      <Filter>JUCE Library Code</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\JuceLibraryCode\JuceHeader.h">
       <Filter>JUCE Library Code</Filter>
     </ClInclude>
@@ -5038,6 +5104,9 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\..\Resources\baby.png">
+      <Filter>Synthfant\Resources</Filter>
+    </None>
     <None Include="..\..\..\..\..\juce-6.0.8-windows\JUCE\modules\juce_audio_devices\native\oboe\CMakeLists.txt">
       <Filter>JUCE Modules\juce_audio_devices\native\oboe</Filter>
     </None>

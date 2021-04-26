@@ -33,11 +33,12 @@ void ADSRComponent::paint (juce::Graphics& g)
 {
     auto bounds = getLocalBounds().reduced(5);
     auto labelSpace = bounds.removeFromTop(25.0f);
-    g.fillAll(juce::Colours::black);
-    g.setColour(juce::Colours::white);
+    g.setColour(juce::Colours::black);
     g.setFont(20.0f);
     g.drawText(componentName, labelSpace.withX(5), juce::Justification::left);
-    g.drawRoundedRectangle(bounds.toFloat(), 5.0f, 2.0f);
+    g.drawRoundedRectangle(bounds.toFloat(), 5.0f, 5.0f);
+    g.setColour(juce::Colours::lightblue);
+    g.fillRoundedRectangle(bounds.toFloat(), 5.0f);
 }
 
 void ADSRComponent::resized()
@@ -68,11 +69,12 @@ void ADSRComponent::setSliderWithLabel(juce::Slider& slider, juce::Label& label,
 {
     slider.setSliderStyle(juce::Slider::LinearVertical);
     slider.setTextBoxStyle(juce::Slider::TextBoxBelow, true, 50, 25);
+    slider.setColour(juce::Slider::ColourIds::textBoxTextColourId, juce::Colours::black);
     addAndMakeVisible(slider);
 
     sliderAttachment = std::make_unique<juce::AudioProcessorValueTreeState::SliderAttachment>(apvts, parameterID, slider);
 
-    label.setColour(juce::Label::ColourIds::textColourId, juce::Colours::white);
+    label.setColour(juce::Label::ColourIds::textColourId, juce::Colours::black);
     label.setFont(15.0f);
     label.setJustificationType(juce::Justification::centred);
     addAndMakeVisible(label);

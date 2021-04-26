@@ -198,8 +198,7 @@ void PuzzleMirrorSynthAudioProcessor::processBlock (juce::AudioBuffer<float>& bu
             voice->updateFilter(filterType, filterCutoff, filterResonance);
             voice->getFilterADSR().updateADSR(filterAttack.load(), filterDecay.load(), filterSustain.load(), filterRelease.load());
             voice->updateDistortion(distortionType);
-            voice->getGain().setGainLevel(gainVal);
-            
+            voice->getGain().setGainLevel(gainVal);            
         }
     }
 
@@ -288,10 +287,10 @@ juce::AudioProcessorValueTreeState::ParameterLayout PuzzleMirrorSynthAudioProces
 
     // FM 
     params.push_back(std::make_unique<juce::AudioParameterFloat>("OSC1FMFREQUENCY", "Osc 1 FM Frequency",
-        juce::NormalisableRange<float>{0.0f, 1000.0f, 0.01f}, 0.0f));
+        juce::NormalisableRange<float>{0.0f, 1000.0f, 0.01f, 0.6f}, 0.0f));
 
     params.push_back(std::make_unique<juce::AudioParameterFloat>("OSC1FMDEPTH", "Osc 1 FM Depth",
-        juce::NormalisableRange<float>{0.0f, 1000.0f, 0.01f}, 0.0f));
+        juce::NormalisableRange<float>{0.0f, 1000.0f, 0.01f, 0.6f}, 0.0f));
 
     // ADSR
     params.push_back(std::make_unique<juce::AudioParameterFloat>("ATTACK", "Attack",
@@ -362,7 +361,7 @@ juce::AudioProcessorValueTreeState::ParameterLayout PuzzleMirrorSynthAudioProces
 
     // Chorus
     params.push_back(std::make_unique<juce::AudioParameterFloat>("CHORUSRATE", "Chorus Rate",
-        juce::NormalisableRange<float>{0.0f, 100.0f, 0.01f, 0.5f }, 1.0f));
+        juce::NormalisableRange<float>{0.0f, 99.0f, 0.01f, 0.5f }, 1.0f));
     params.push_back(std::make_unique<juce::AudioParameterFloat>("CHORUSDEPTH", "Chorus Depth",
         juce::NormalisableRange<float>{0.0f, 1.0f, 0.1f }, 0.0f));
     params.push_back(std::make_unique<juce::AudioParameterFloat>("CHORUSCENTERDELAY", "Chorus Center Delay",
