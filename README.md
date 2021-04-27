@@ -1,4 +1,4 @@
-Synthfant is a lil baby synthesizer that can generate a wide array of sounds ranging from classic synth patches to strange sound effects. 
+Synthfant is a lil baby synthesizer that can generate a wide array of sounds ranging from classic synth patches to strange sound effects. <br/>
 In order to use it, you will need to download the VST3 file and place it in the relevant folder according to your OS. <br/>
 Windows -> C:\Program Files\Common Files\VST3<br/>
 MacOS -> /Library/Audio/Plug-Ins/VST3<br/>
